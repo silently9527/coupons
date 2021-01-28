@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.huaan9527.mall.webapi.configuration.properties.DaTaoKeProperties;
-import com.huaan9527.mall.webapi.service.SpiderService;
 import com.huaan9527.mall.webapi.service.operation.api.AlbumApi;
 import com.huaan9527.mall.webapi.service.operation.api.ExplosiveGoodsListApi;
 import com.huaan9527.mall.webapi.service.operation.api.GoodsApi;
@@ -29,8 +28,6 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class DaTaoKeApiTest extends BaseTest {
-    @Autowired
-    private SpiderService spiderService;
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
@@ -152,16 +149,6 @@ public class DaTaoKeApiTest extends BaseTest {
     }
 
     @Test
-    public void test12() throws ParseException {
-        spiderService.spiderNothingCollocation("a3d1eef0379845b680ecb7007ac48a93");
-    }
-
-    @Test
-    public void test13() {
-        spiderService.spiderNothingCollocationList(0, 100);
-    }
-
-    @Test
     public void test14() {
     }
 
@@ -170,13 +157,6 @@ public class DaTaoKeApiTest extends BaseTest {
         String url = "http://api.yyixxx.com/api/discovery/match?device=1&limit=20&page=1&type=0";
         String body = HttpsClientUtil.doPost(url, "");
         System.out.println(body);
-    }
-
-    @Test
-    public void test16() {
-//        Integer amount = spiderService.spiderYiXinCollocationList(1, 20);
-//        System.out.println(amount);
-        spiderService.spiderYiXinCollocation(5929L);
     }
 
     @Test
