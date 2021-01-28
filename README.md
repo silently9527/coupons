@@ -37,8 +37,9 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 
 
 ## 效果预览
-
-
+|  App下载地址   | QQ小程序  | 微信小程序  | Web站点 |
+|  ----  | ----  | ----  | ----  |
+| ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/App%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png) | ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.png) | ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg) | ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/web%E7%AB%99%E7%82%B9%E7%A0%81.png) |
 
 
 
@@ -86,6 +87,7 @@ Gitee地址：
 前端项目地址：
 
 
-
+## 微信公众号
+<img width="200" src="https://raw.githubusercontent.com/silently9527/JavaCore/master/imgs/gonzhonghao.png" alt="公众号">
 
 
