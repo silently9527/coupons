@@ -26,9 +26,6 @@ import java.util.Optional;
 @Configuration
 public class CommonConfiguration {
 
-//    @Autowired
-//    private TaoBaoKeProperties taoBaoKeProperties;
-
     /**
      * @return
      */
@@ -36,13 +33,6 @@ public class CommonConfiguration {
     public AuditorAware auditorAware() {
         return () -> Optional.of(SecurityUtils.getCurrentUserId());
     }
-
-//    @Bean
-//    public TaobaoClient taobaoClient() {
-//        return new DefaultTaobaoClient(taoBaoKeProperties.getServerUrl(),
-//                taoBaoKeProperties.getAppKey(),
-//                taoBaoKeProperties.getAppSecret());
-//    }
 
     @Bean
     public RestTemplate restTemplate() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {

@@ -133,10 +133,6 @@ public class UserService {
         if (registerVo.getVerifyCode().equals(cachedCode)) {
             throw new MsException("User", "验证码有误");
         }
-
-
-
-
     }
 
 

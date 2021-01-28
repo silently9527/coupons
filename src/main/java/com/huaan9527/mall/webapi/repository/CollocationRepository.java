@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mybatis.repository.Modifying;
 import org.springframework.data.mybatis.repository.MybatisRepository;
 import org.springframework.data.mybatis.repository.Query;
-import org.springframework.data.mybatis.repository.SelectColumns;
 import org.springframework.data.repository.query.Param;
 
 public interface CollocationRepository extends MybatisRepository<Collocation, Long> {

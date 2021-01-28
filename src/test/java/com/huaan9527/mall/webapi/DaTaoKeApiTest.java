@@ -15,13 +15,6 @@ import com.huaan9527.mall.webapi.service.operation.api.SearchApi;
 import com.huaan9527.mall.webapi.service.operation.api.SimilarGoodsApi;
 import com.huaan9527.mall.webapi.service.operation.api.TaobaoSearchApi;
 import com.huaan9527.mall.webapi.utils.HttpsClientUtil;
-import com.taobao.api.ApiException;
-import com.taobao.api.DefaultTaobaoClient;
-import com.taobao.api.TaobaoClient;
-import com.taobao.api.request.TbkItemInfoGetRequest;
-import com.taobao.api.request.TbkTpwdCreateRequest;
-import com.taobao.api.response.TbkItemInfoGetResponse;
-import com.taobao.api.response.TbkTpwdCreateResponse;
 import org.apache.commons.lang3.time.DateUtils;
 import org.junit.Test;
 import org.ocpsoft.prettytime.PrettyTime;
@@ -38,8 +31,6 @@ import java.util.Map;
 public class DaTaoKeApiTest extends BaseTest {
     @Autowired
     private SpiderService spiderService;
-//    @Autowired
-//    private TaobaoClient taobaoClient;
     @Autowired
     private RestTemplate restTemplate;
     @Autowired
@@ -118,16 +109,7 @@ public class DaTaoKeApiTest extends BaseTest {
 
 
     @Test
-    public void test7() throws ApiException {
-        TaobaoClient client = new DefaultTaobaoClient(
-                "http://gw.api.taobao.com/router/rest",
-                "29269545", "47c1a17d6767832cd740609fe6f87970");
-        TbkTpwdCreateRequest req = new TbkTpwdCreateRequest();
-        req.setText("云南本草鸡眼膏去手足部脚底瘊子除老茧肉刺根脚趾疣去疣灵鸡眼贴");
-        req.setUrl("https://uland.taobao.com/coupon/edetail?e=iAnYkq8JpgcNfLV8niU3RxsUty%2FyJZUCIUcOemCte8jHoQe1tkK55bZB4GXhba7v0Q1Jq%2BNXEiZgkVcgWMU0HkYSdL7pXfEY0FDYNTKkBZ6PpcyO7ePqCsLreZgmuMUiMkiuPt0zy1qH8xcAtiGe3fd92CpNTs9nKW54FrvOIbsBYWXKtF1K7slMTjSQsK4pbac7vn259G6ie%2FpBy9wBFg%3D%3D&app_pvid=59590_11.26.37.191_540_1592797219349&ptl=floorId%3A17741&app_pvid%3A59590_11.26.37.191_540_1592797219349&tpp_pvid%3A&union_lens=lensId%3APUB%401592796558%403a0e6c51-544a-4a1e-b8b0-42bcde792dbc_38249523460%40025eV3A8Vi4azYUXYldE4GsY");
-        req.setLogo("https://img.alicdn.com/imgextra/i3/3155924832/O1CN01GSLxVl1lZ6MGA1284_!!3155924832.jpg");
-        TbkTpwdCreateResponse rsp = client.execute(req);
-        System.out.println(rsp.getBody());
+    public void test7() {
     }
 
     @Test
@@ -180,34 +162,30 @@ public class DaTaoKeApiTest extends BaseTest {
     }
 
     @Test
-    public void test14() throws ApiException {
-//        TbkItemInfoGetRequest req = new TbkItemInfoGetRequest();
-////        req.setNumIids("627299620381");
-////        TbkItemInfoGetResponse response = taobaoClient.execute(req);
-////        System.out.println(JSON.toJSONString(response));
+    public void test14() {
     }
 
     @Test
-    public void test15() throws ApiException {
+    public void test15() {
         String url = "http://api.yyixxx.com/api/discovery/match?device=1&limit=20&page=1&type=0";
         String body = HttpsClientUtil.doPost(url, "");
         System.out.println(body);
     }
 
     @Test
-    public void test16() throws ApiException {
+    public void test16() {
 //        Integer amount = spiderService.spiderYiXinCollocationList(1, 20);
 //        System.out.println(amount);
         spiderService.spiderYiXinCollocation(5929L);
     }
 
     @Test
-    public void test17() throws ApiException {
+    public void test17() {
         String body = restTemplate.getForObject("https://m.tb.cn/h.4aN7Uzr?sm=07929b", String.class);
     }
 
     @Test
-    public void test18() throws ApiException {
+    public void test18() {
         Map<String, String> params = new HashMap<>();
         params.put("pageId", "1");
         params.put("pageSize", "10");
@@ -216,7 +194,7 @@ public class DaTaoKeApiTest extends BaseTest {
     }
 
     @Test
-    public void test19() throws ApiException {
+    public void test19() {
         JSONArray array = taobaoSearchApi.search("电饭锅", 1, "tk_total_sales_des", "true");
         System.out.println(array);
     }

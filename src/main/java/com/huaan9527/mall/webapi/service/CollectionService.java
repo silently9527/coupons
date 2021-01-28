@@ -1,6 +1,5 @@
 package com.huaan9527.mall.webapi.service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.huaan9527.mall.webapi.domain.Collection;
 import com.huaan9527.mall.webapi.domain.enums.DataType;
 import com.huaan9527.mall.webapi.repository.CollectionRepository;
