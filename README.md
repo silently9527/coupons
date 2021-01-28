@@ -20,13 +20,18 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 - [x] 用户点赞
 - [x] 商品分类
 - [x] 分类查询商品列表
-- [x] 首页轮播、APP、Web支持唤醒淘宝
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-- [x] 
-
+- [x] 首页轮播
+- [x] APP、Web支持唤醒淘宝
+- [x] 9.9包邮
+- [x] 疯抢排行榜
+- [x] 首页优质商品推荐
+- [x] 商品、优惠券搜索
+- [x] 商品详情
+- [x] 相似商品推荐
+- [x] 商品收藏、收藏夹
+- [x] 口令购买、领券购买
+- [x] 用户登录、微信登录、QQ登录、手机验证码登录
+- [x] 用户新手教程
 
 ## 项目文档
 
@@ -35,14 +40,17 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 ## 效果预览
 
 
+
+
+
 ## 组织结构
 
 ```
-mall
-├── mall-common -- 工具类及通用代码
-├── mall-mbg -- MyBatisGenerator生成的数据库操作代码
-├── mall-security -- SpringSecurity封装公用模块
-├── mall-admin -- 后台商城管理系统接口
+mall-coupons-server
+├── doc -- 数据库脚本
+├── lib -- 第三方依赖包
+├── src -- 后端代码源码
+├── static -- 静态页面，用户
 ├── mall-search -- 基于Elasticsearch的商品搜索系统
 ├── mall-portal -- 前台商城系统接口
 └── mall-demo -- 框架搭建时的测试代码
