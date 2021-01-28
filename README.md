@@ -9,8 +9,7 @@
 </p>
 
 ## 项目介绍
-Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经
-支持打包成App、微信小程序、QQ小程序、Web站点。
+Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点。
 
 ## 功能列表
 - [x] 推荐穿衣搭配
@@ -50,17 +49,31 @@ mall-coupons-server
 ├── doc -- 数据库脚本
 ├── lib -- 第三方依赖包
 ├── src -- 后端代码源码
-├── static -- 静态页面，用户
-├── mall-search -- 基于Elasticsearch的商品搜索系统
-├── mall-portal -- 前台商城系统接口
-└── mall-demo -- 框架搭建时的测试代码
+├── static -- 静态页面，App下载静态页
 ```
 
 ## 技术选型
 
+#### 后端技术
+|  技术   | 备注  | 地址  |
+|  ----  | ----  |----  |
+| SpringBoot  | 容器+MVC框架 | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot) |
+| MyBatis  | 	ORM框架 | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html) |
+| SpringSecurity  | 认证和授权框架 | [https://spring.io/projects/spring-security](https://spring.io/projects/spring-security) |
+| SpringSocial  | OAuth2认证框架 | [https://github.com/spring-projects/spring-social](https://github.com/spring-projects/spring-social) |
+| Redis  | 分布式缓存 | [https://redis.io/](https://redis.io/) |
+| Druid  | 数据库连接池 | [https://github.com/alibaba/druid](https://github.com/alibaba/druid) |
+| Lombok  | 简化对象封装工具 | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok) |
+| Fastjson  | JSON工具 | https://github.com/alibaba/fastjson |
+| spring-data-mybatis  | 封装Mybatis实现JPA部分功能 | [https://github.com/easybest/spring-data-mybatis](https://github.com/easybest/spring-data-mybatis) |
 
-## 前端技术
-
+#### 前端技术
+|  技术   | 备注  | 地址  |
+|  ----  | ----  |----  |
+| Vue  | 前端框架 | [https://vuejs.org/](https://vuejs.org/) |
+| UniApp | 一个使用 Vue.js 开发所有前端应用的框架 | [https://uniapp.dcloud.io/](https://uniapp.dcloud.io/) |
+| Vuex | 全局状态管理框架 | [https://vuex.vuejs.org/](https://vuex.vuejs.org/) |
+| colorui | 样式库 | [https://github.com/weilanwl/ColorUI](https://github.com/weilanwl/ColorUI) |
 
 ## 架构图
 
