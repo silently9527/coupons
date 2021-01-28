@@ -1,0 +1,125 @@
+<!-- saved from url=(0019)http://cb.ssgg6.cn/ -->
+<html style="font-size: 85.3333px;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="telephone=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <title>FASHION</title>
+    <meta name="Keywords" content="潮流穿搭|内部购物优惠券|购物返利网|购物省钱APP|学生宝妈兼职APP">
+    <meta name="Description" content="FASHION是一款领取购物优惠券的APP，致力于帮助用户花更少的钱，买更好的商品">
+    <link href="css/index.css?version=20201107" rel="stylesheet">
+</head>
+<body class="download_layout active">
+
+<!--微信-->
+<div class="weixin-tip" style="display: none;">
+    <div class="wechat-line"></div>
+    <div class="wechat-brow">
+        <p>点击右上角</p>
+        <p>选择 默认浏览器 打开 </p>
+        <p>即可下载安装</p>
+    </div>
+    <div class="tkl-layer">
+        <div class="app-icon">
+            <img src="image/cb.png" width="100">
+        </div>
+        <div class="app-name">FASHION搭配助手</div>
+        <div class="app-ver">购物先领取优惠券，爱穿搭更爱省钱！</div>
+        <div class="app-down-info">
+            <div class="down-msg">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="pop_up">
+    <i></i>
+    <div class="pop_block">
+        <i></i>
+        <div class="ck">请点击右上角 <span>···</span></div>
+        <div>选择“在浏览器中打开”</div>
+    </div>
+</div>
+<div class="new-down-header">
+    <div>
+        <img class="new-down-icon" src="image/cb.png">
+        <div>
+            <h4>FASHION</h4>
+            <span>我不塑造时尚，我就是时尚</span>
+        </div>
+    </div>
+</div>
+
+<div class="new-down-wenan">
+    <img src="image/wenan.png" alt="">
+</div>
+
+<div class="new-down-main">
+    <div class="phone phone2" style="display: block;"></div>
+    <div class="banner banner2" style="display: block;"></div>
+    <div class="bg"></div>
+    <div class="decoration"></div>
+    <div class="btn btn1" data-type="3">
+        <div class="top top1" style="display: none;"></div>
+    </div>
+    <div class="btn btn2" data-type="1">
+        <div class="top top2" style="display: block;"></div>
+    </div>
+    <div class="btn btn3" data-type="2">
+        <div class="top top3" style="display: none;"></div>
+    </div>
+</div>
+
+<div class="new-down-footer" style="margin-top:15px;">
+    <a href="http://static.szjx.top/app/fashion.apk" target="_blank" class="down"><i class="down-icon"></i>下载APP</a>
+</div>
+
+<script src="script/jquery-1.11.1.min.js"></script>
+<script src="script/clipboard.min.js"></script>
+<script>
+    $(window).load(function () {
+        $(".download_layout").addClass('active');
+
+        var u = navigator.userAgent;
+        var isWeixin = u.toLowerCase().indexOf('micromessenger') > -1;
+        if (isWeixin) {
+            $(".weixin-tip").show();
+        }
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isAndroid) {
+            $('.new-down-footer .down').attr("href","http://static.szjx.top/app/fashion.apk")
+        }
+        if(isiOS) {
+            $('.new-down-footer .down').attr("href","https://apps.apple.com/cn/app/fashion-%E6%88%91%E4%B8%8D%E5%A1%91%E9%80%A0%E6%97%B6%E5%B0%9A-%E6%88%91%E5%B0%B1%E6%98%AF%E6%97%B6%E5%B0%9A/id1524298545")
+        }
+
+        $(".bd-download").on("click", function () {
+            if ($(this).hasClass("yes-copy")) return false;
+            var _this = this;
+            var $clip = new Clipboard(_this, {
+                text: function (trigger) {
+                    return trigger.getAttribute('aria-label');
+                }
+            });
+            $clip.on('success', function (e) {
+                $(_this).attr("src", "img/uploadbtnyes.svg")
+                $(_this).parents(".download_btn").find(".down-msg").html("请打开系统自带或QQ/UC/百度/360浏览器粘贴下载地址即可下载");
+                e.clearSelection();
+            });
+            $clip.on('error', function (e) {
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+            });
+
+        });
+        $(".bd-download").click();
+    });
+</script>
+
+
+</body>
+</html>

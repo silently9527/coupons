@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="applicable-device" content="mobile">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="wap-font-scale" content="no">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" href="./css/layer.css" id="layuicss-skinlayercss">
+    <link rel="stylesheet" href="./css/common.css">
+</head>
+<body>
+<div class="wapper">
+
+    <div class="banner"><img src="./image/top_banner.png" alt=""></div>
+    <div class="uname">
+        <img src="http://file.szjx.top/fashion/missing-face.png" alt="" class="logo_img">
+        <span>邀请码：C0SR7P</span>
+    </div>
+    <br>
+    <div class="regText">
+        <img src="./image/reg_text.png" alt="">
+    </div>
+    <div class="cont">
+        <span>1、手机号码验证下载「FASHION搭配助手」；</span><br>
+        <span>2、打开 APP，即刻开始领券赚钱之旅吧！</span>
+    </div>
+    <form class="form">
+        <div class="register">
+            <div style="position: relative;">
+                <input id="mobile" type="text" placeholder="请输入手机号" maxlength="11">
+                <span class="verifyCode" id="getCode" onclick="getCode()">获取验证码</span>
+            </div>
+            <input id="verifyCode" type="text" placeholder="请输入验证码" maxlength="11">
+
+            <button id="inviteBtn" class="inviteBtn" onclick="register()" type="button"></button>
+        </div>
+        <div class="down hide">
+            <button id="downBtn" class="downBtn" type="button" style="color:#f94646;"
+                    data-android-url="http://static.szjx.top/app/fashion.apk"
+                    data-ios-url="https://apps.apple.com/cn/app/fashion-%E6%88%91%E4%B8%8D%E5%A1%91%E9%80%A0%E6%97%B6%E5%B0%9A-%E6%88%91%E5%B0%B1%E6%98%AF%E6%97%B6%E5%B0%9A/id1524298545"
+            ></button>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-base64@3.6.0/base64.min.js"></script>
+<script type="text/javascript" src="./script/jquery.min.js"></script>
+<script type="text/javascript" src="./script/layer.js"></script>
+<script type="text/javascript" src="./script/common.js"></script>
+</body>
+</html>

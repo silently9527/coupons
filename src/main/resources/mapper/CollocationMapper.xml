@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.huaan9527.mall.webapi.repository.CollocationRepository">
+
+    <resultMap id="collocationDetailVo" type="com.huaan9527.mall.webapi.vos.CollocationDetailVo">
+        <id column="collocationId" property="collocationId"/>
+        <result column="description" property="description"/>
+        <result column="mainImage" property="mainImage"/>
+        <result column="createdDate" property="createdDate"/>
+        <result column="images" property="images"/>
+        <result column="viewCount" property="viewCount"/>
+        <result column="appreciateCount" property="appreciateCount"/>
+        <collection property="products" ofType="com.huaan9527.mall.webapi.vos.CollocationProductVo">
+            <id column="productId" property="productId"/>
+            <result column="goodsId" property="goodsId"/>
+        </collection>
+        <collection property="tags" ofType="com.huaan9527.mall.webapi.vos.TagVo">
+            <id column="tagId" property="tagId"/>
+            <result column="tagName" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="findDetailById" resultMap="collocationDetailVo">
+        SELECT
+        c.id collocationId,
+        c.created_date createdDate,
+        c.description description,
+        c.main_image mainImage,
+        c.images,
+        c.view_count viewCount,
+        c.appreciate_count appreciateCount,
+        cp.id productId,
+        cp.tb_goods_id goodsId,
+        tag.id tagId,
+        tag.`name` tagName
+        FROM
+        collocation c
+        LEFT JOIN tag_relation tr ON c.id = tr.data_id AND tr.data_type = 'Collocation'
+        LEFT JOIN tag tag ON tag.id = tr.tag_id
+        LEFT JOIN collocation_product cp ON cp.collocation_id = c.id AND cp.product_status = 'Up'
+        WHERE
+        c.id = #{collocationId}
+    </select>
+
+    <resultMap id="collocationVo" type="com.huaan9527.mall.webapi.vos.CollocationVo">
+        <id column="collocationId" property="collocationId"/>
+        <result column="description" property="description"/>
+        <result column="createdDate" property="createdDate"/>
+        <result column="mainImage" property="mainImage"/>
+        <result column="images" property="images"/>
+        <result column="viewCount" property="viewCount"/>
+        <result column="appreciateCount" property="appreciateCount"/>
+        <collection property="tags" ofType="com.huaan9527.mall.webapi.vos.TagVo">
+            <id column="tagId" property="tagId"/>
+            <result column="tagName" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="findList" resultMap="collocationVo">
+        SELECT
+        tmp.id collocationId,
+        tmp.created_date createdDate,
+        tmp.description description,
+        tmp.main_image mainImage,
+        tmp.images,
+        tmp.view_count viewCount,
+        tmp.appreciate_count appreciateCount,
+        tag.id tagId,
+        tag.`name` tagName
+        FROM (
+        SELECT
+        c.id,
+        c.created_date,
+        c.description,
+        c.main_image,
+        c.images,
+        c.view_count,
+        c.appreciate_count
+        FROM
+        collocation c
+        ORDER BY
+        <foreach item="item" index="idx" collection="__sort" open="" separator="," close="">
+            c.${item.property} ${item.direction.name()}
+        </foreach>
+        LIMIT #{__offset}, #{__pageSize}
+        ) tmp
+        LEFT JOIN tag_relation tr ON tmp.id = tr.data_id AND tr.data_type = 'Collocation'
+        LEFT JOIN tag tag ON tag.id = tr.tag_id
+        ORDER BY
+        <foreach item="item" index="idx" collection="__sort" open="" separator="," close="">
+        tmp.${item.property} ${item.direction.name()}
+        </foreach>
+    </select>
+
+    <select id="simpleDetail" resultMap="collocationVo">
+        SELECT
+        c.id collocationId,
+        c.created_date createdDate,
+        c.description description,
+        c.main_image mainImage,
+        c.images,
+        c.view_count viewCount,
+        c.appreciate_count appreciateCount,
+        tag.id tagId,
+        tag.`name` tagName
+        FROM
+        collocation c
+        LEFT JOIN tag_relation tr ON c.id = tr.data_id AND tr.data_type = 'Collocation'
+        LEFT JOIN tag tag ON tag.id = tr.tag_id
+        WHERE
+        c.id = #{collocationId}
+    </select>
+
+    <select id="count_findList" resultType="long">
+        SELECT count(c.id) FROM collocation c
+    </select>
+
+    <update id="updateAppreciateCount">
+	    UPDATE collocation SET appreciate_count = appreciate_count + #{amount} WHERE id = #{collocationId}
+    </update>
+
+</mapper>
