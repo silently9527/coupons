@@ -118,10 +118,13 @@ mall-coupons-server
 | Vuex | 全局状态管理框架 | [https://vuex.vuejs.org/](https://vuex.vuejs.org/) |
 | colorui | 样式库 | [https://github.com/weilanwl/ColorUI](https://github.com/weilanwl/ColorUI) |
 
-## 架构图
-
+### 开发环境
+| 工具          | 版本号 | 下载                                                         |
+| ------------- | ------ | ------------------------------------------------------------ |
+| JDK           | 1.8    | https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html |
+| Mysql         | 5.7    | https://www.mysql.com/                                       |
+| Redis         | 5.0    | https://redis.io/download                                    |
+| Nginx         | 1.10   | http://nginx.org/en/download.html                            |
 
 ## 微信公众号
 <img width="200" src="https://raw.githubusercontent.com/silently9527/JavaCore/master/imgs/gonzhonghao.png" alt="公众号">
-
-
