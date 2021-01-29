@@ -39,10 +39,23 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 
 
 ## 在线体验地址
-|  App下载地址   | QQ小程序  | 微信小程序  | Web站点 |
-| :-: | :-: | :-: | :-: |
-| ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4esj3uutj30b40b4jsx.jpg) | ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4et70ft2j30g40g4gm6.jpg) | ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4etut7d1j3076076aa2.jpg) | ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4euhcqonj30b40b43yt.jpg) |
-| <img style="width:200px;" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4esj3uutj30b40b4jsx.jpg"> | <img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4et70ft2j30g40g4gm6.jpg"> | <img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4etut7d1j3076076aa2.jpg"> | <img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4euhcqonj30b40b43yt.jpg"> |
+<table>
+    <tbody>
+        <tr>
+            <td align="center">App下载地址</td>
+            <td align="center">QQ小程序</td>
+            <td align="center">微信小程序</td>
+            <td align="center">Web站点</td>
+        </tr>
+        <tr>
+            <td align="center"><img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4esj3uutj30b40b4jsx.jpg"></td>
+            <td align="center"><img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4et70ft2j30g40g4gm6.jpg"></td>
+            <td align="center"><img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4etut7d1j3076076aa2.jpg"></td>
+            <td align="center"><img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4euhcqonj30b40b43yt.jpg"></td>
+        </tr>
+    </tbody>
+</table>
+
 
 ## 效果预览
 
