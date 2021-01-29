@@ -47,7 +47,7 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
             <td align="center">微信小程序</td>
             <td align="center">Web站点</td>
         </tr>
-        <tr>
+        <tr style="background-color: white;">
             <td align="center"><img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4esj3uutj30b40b4jsx.jpg"></td>
             <td align="center"><img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4et70ft2j30g40g4gm6.jpg"></td>
             <td align="center"><img width="200" src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn4etut7d1j3076076aa2.jpg"></td>
@@ -58,9 +58,14 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 
 
 ## 效果预览
-
-
-
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hfiqyqoj30ku11240m.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hggo8thj30ku112aba.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hge5bwuj30ku112my9.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hgbc1e2j30ku112dhz.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hg8p7uhj30ku112acg.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hg5kj8lj30ku112tc6.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hg10sibj30ku112acs.jpg)
+![](https://tva1.sinaimg.cn/large/008eGmZEly1gn4hft8rzcj30ku1123yt.jpg)
 
 ## 组织结构
 
