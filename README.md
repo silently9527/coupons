@@ -42,11 +42,6 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 - [x] 用户登录、微信登录、QQ登录、手机验证码登录
 - [x] 用户新手教程
 
-## 项目部署文档
-关注微信公众号：`贝塔学JAVA` 
-
-回复`文档`即可
-
 ## 在线体验地址
 <table>
     <tbody>
@@ -125,6 +120,9 @@ mall-coupons-server
 | Mysql         | 5.7    | https://www.mysql.com/                                       |
 | Redis         | 5.0    | https://redis.io/download                                    |
 | Nginx         | 1.10   | http://nginx.org/en/download.html                            |
+
+## 项目部署文档
+关注微信公众号：`贝塔学JAVA` ;回复`文档`即可
 
 ## 微信公众号
 <img width="200" src="https://raw.githubusercontent.com/silently9527/JavaCore/master/imgs/gonzhonghao.png" alt="公众号">
