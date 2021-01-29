@@ -42,9 +42,10 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 - [x] 用户登录、微信登录、QQ登录、手机验证码登录
 - [x] 用户新手教程
 
-## 项目文档
+## 项目部署文档
+关注微信公众号：`贝塔学JAVA` 
 
-
+回复`文档`即可
 
 ## 在线体验地址
 <table>
@@ -118,9 +119,6 @@ mall-coupons-server
 | colorui | 样式库 | [https://github.com/weilanwl/ColorUI](https://github.com/weilanwl/ColorUI) |
 
 ## 架构图
-
-
-## 部署步骤
 
 
 ## 微信公众号
