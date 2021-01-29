@@ -13,6 +13,14 @@
 ## 项目介绍
 Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点；理论上其他小程序支持，可能需要微调
 
+### Github地址：
+- 后端项目地址：[https://github.com/silently9527/mall-coupons-server](https://github.com/silently9527/mall-coupons-server)
+- 前端项目地址：[https://github.com/silently9527/mall-coupons](https://github.com/silently9527/mall-coupons)
+
+### Gitee地址：
+- 后端项目地址：[https://gitee.com/silently9527/mall-coupons-server](https://gitee.com/silently9527/mall-coupons-server)
+- 前端项目地址：[https://gitee.com/silently9527/mall-coupons](https://gitee.com/silently9527/mall-coupons)
+
 ## 功能列表
 - [x] 推荐穿衣搭配
 - [x] 搭配筛选
@@ -113,12 +121,6 @@ mall-coupons-server
 
 
 ## 部署步骤
-
-Github地址：
-
-Gitee地址：
-
-前端项目地址：
 
 
 ## 微信公众号
