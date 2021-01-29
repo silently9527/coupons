@@ -122,7 +122,7 @@ mall-coupons-server
 | Nginx         | 1.10   | http://nginx.org/en/download.html                            |
 
 ## 项目部署文档
-关注微信公众号：`贝塔学JAVA` ;回复`文档`即可
+关注微信公众号：`贝塔学JAVA` ;回复`文档`获取部署文档
 
 ## 微信公众号
 <img width="200" src="https://raw.githubusercontent.com/silently9527/JavaCore/master/imgs/gonzhonghao.png" alt="公众号">
