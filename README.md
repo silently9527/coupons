@@ -11,7 +11,7 @@
 # 文档完善中...
 
 ## 项目介绍
-Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点。
+Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点；理论上其他小程序支持，可能需要微调
 
 ## 功能列表
 - [x] 推荐穿衣搭配
@@ -41,7 +41,7 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
 ## 在线体验地址
 |  App下载地址   | QQ小程序  | 微信小程序  | Web站点 |
 |  ----  | ----  | ----  | ----  |
-| ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/App%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80.png) | ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/QQ%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.png) | ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%A0%81.jpg) | ![](https://raw.githubusercontent.com/silently9527/mall-coupons-server/master/doc/web%E7%AB%99%E7%82%B9%E7%A0%81.png) |
+| ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4esj3uutj30b40b4jsx.jpg) | ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4et70ft2j30g40g4gm6.jpg) | ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4etut7d1j3076076aa2.jpg) | ![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn4euhcqonj30b40b43yt.jpg) |
 
 ## 效果预览
 
