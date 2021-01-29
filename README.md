@@ -8,6 +8,8 @@
   <a href="https://www.zhihu.com/people/huaan9527-57/posts"><img src="https://img.shields.io/badge/zhihu-知乎-purple" alt="知乎"></a>
 </p>
 
+# 文档完善中...
+
 ## 项目介绍
 Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点。
 
@@ -85,6 +87,7 @@ mall-coupons-server
 ## 部署步骤
 
 Github地址：
+
 Gitee地址：
 
 前端项目地址：
