@@ -131,3 +131,8 @@ mall-coupons-server
 
 ## 微信公众号
 <img width="200" src="https://raw.githubusercontent.com/silently9527/JavaCore/master/imgs/gonzhonghao.png" alt="公众号">
+
+## 捐赠研发
+如果您认为此项目帮到了您的开发工作，使您赚到钱了,您可以捐赠我一杯可乐(相信这比打赏主播更有意义)。
+
+![](https://tva1.sinaimg.cn/large/008eGmZEgy1gn63yahvn4j30ia0igjsw.jpg)
