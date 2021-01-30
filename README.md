@@ -123,8 +123,10 @@ mall-coupons-server
 | Redis         | 5.0    | https://redis.io/download                                    |
 | Nginx         | 1.10   | http://nginx.org/en/download.html                            |
 
-## 项目部署文档
+## 部署文档
 关注微信公众号：`贝塔学JAVA` ;回复`文档`获取部署文档
+
+**有任何部署疑问，欢迎给我留言**
 
 ## 微信公众号
 <img width="200" src="https://raw.githubusercontent.com/silently9527/JavaCore/master/imgs/gonzhonghao.png" alt="公众号">
