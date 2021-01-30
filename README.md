@@ -60,6 +60,8 @@ Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初�
     </tbody>
 </table>
 
+App下载地址: [http://static.szjx.top/download/index.html](http://static.szjx.top/download/index.html)
+
 
 ## 效果预览
 <table>
