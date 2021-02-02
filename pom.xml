@@ -64,6 +64,8 @@
             <groupId>com.monkeyk</groupId>
             <artifactId>spring-social-qq</artifactId>
             <version>1.0.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/spring-social-qq-1.0.2.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.monkeyk</groupId>
