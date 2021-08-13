@@ -1,0 +1,125 @@
+{
+  "pages": [
+    {
+      "path": "pages/collocation/index",
+      "style": {}
+    },
+    {
+      "path": "pages/collocation/detail",
+      "style": {}
+    },
+    {
+      "path": "pages/index/index",
+      "style": {
+      }
+    },
+    {
+      "path": "pages/webview/index",
+      "style": {
+        "navigationStyle": "default",
+        "app-plus": {
+          "titleNView": {
+            "titleText": "加载中"
+          }
+        }
+      }
+    },
+    {
+      "path": "pages/nine/nine",
+      "style": {
+      }
+    },
+    {
+      "path": "pages/rank/rank",
+      "style": {
+      }
+    },
+    {
+      "path": "pages/halfPrice/index",
+      "style": {
+      }
+    },
+    {
+      "path": "pages/product/product",
+      "style": {}
+    },
+    {
+      "path": "pages/collect/collect",
+      "style": {}
+    },
+    {
+      "path": "pages/user/user",
+      "style": {}
+    },
+    {
+      "path": "pages/public/guide",
+      "style": {}
+    },
+    {
+      "path": "pages/category/category",
+      "style": {}
+    },
+    {
+      "path": "pages/product/list",
+      "style": {}
+    },
+    {
+      "path": "pages/search/search",
+      "style": {}
+    },
+    {
+      "path": "pages/search/result",
+      "style": {}
+    },
+    {
+      "path": "pages/public/login",
+      "style": {}
+    },
+    {
+      "path": "pages/user/set",
+      "style": {}
+    },
+    {
+      "path": "pages/user/message",
+      "style": {}
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "FASHION搭配助手",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#f8f8f8",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/collocation/index",
+        "iconPath": "static/tab/home.png",
+        "text": "",
+        "selectedIconPath": "static/tab/home_cur.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "static/tab/circle.png",
+        "text": "",
+        "selectedIconPath": "static/tab/circle_cur.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tab/shop.png",
+        "text": "",
+        "selectedIconPath": "static/tab/shop_cur.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "static/tab/my.png",
+        "text": "",
+        "selectedIconPath": "static/tab/my_cur.png"
+      }
+    ]
+  }
+}
