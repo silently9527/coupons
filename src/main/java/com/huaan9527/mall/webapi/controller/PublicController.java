@@ -36,7 +36,7 @@ public class PublicController {
     private CarouselService carouselService;
     private MenuService menuService;
     @Resource
-    private RedisTemplate<String, Integer> redisTemplate;
+    private RedisTemplate redisTemplate;
 
     @Deprecated
     @PostMapping("/register")
