@@ -1,4 +1,4 @@
-# Mall-Coupons
+# Coupons
 
 <p align="center">
   <a href="#微信公众号"><img src="https://img.shields.io/badge/公众号-贝塔学JAVA-blue.svg" alt="公众号"></a>
@@ -15,15 +15,13 @@
 # 文档完善中...
 
 ## 项目介绍
-Mall-Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点；理论上其他小程序支持，可能需要微调
+Coupons是一个从前端到后端完全开源的淘宝客项目，当初学习完uniapp之后想做一个实战项目，所以才研发了这个项目。由于本人平时主要从事后端研发，界面样式非我所长，所以大家觉得界面效果不好的可以自己修改。目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点；理论上其他小程序支持，可能需要微调
 
 ### Github地址：
-- 后端项目地址：[https://github.com/silently9527/mall-coupons-server](https://github.com/silently9527/mall-coupons-server)
-- 前端项目地址：[https://github.com/silently9527/mall-coupons](https://github.com/silently9527/mall-coupons)
+- 项目地址：[https://github.com/silently9527/coupons](https://github.com/silently9527/coupons)
 
 ### Gitee地址：
-- 后端项目地址：[https://gitee.com/silently9527/mall-coupons-server](https://gitee.com/silently9527/mall-coupons-server)
-- 前端项目地址：[https://gitee.com/silently9527/mall-coupons](https://gitee.com/silently9527/mall-coupons)
+- 项目地址：[https://gitee.com/silently9527/coupons](https://gitee.com/silently9527/coupons)
 
 ## 功能列表
 - [x] 推荐穿衣搭配
@@ -90,11 +88,10 @@ Web站点(用手机访问，PC端未适配)：[http://m.szjx.top](http://m.szjx.
 ## 组织结构
 
 ```
-mall-coupons-server
+coupons
 ├── doc -- 数据库脚本
-├── lib -- 第三方依赖包
-├── src -- 后端代码源码
-├── static -- 静态页面，App下载静态页
+├── server -- 后端源码
+├── client -- 前端源码
 ```
 
 ## 技术选型
@@ -133,8 +130,14 @@ mall-coupons-server
 
 **有任何部署疑问，欢迎给我留言**
 
-## 微信公众号
-<img width="200" src="https://raw.githubusercontent.com/silently9527/JavaCore/master/imgs/gonzhonghao.png" alt="公众号">
+#### 微信公众号
+
+<img width="200" src="https://tva1.sinaimg.cn/large/008i3skNgy1gtezj6orcdj60gu0gswfr02.jpg" alt="公众号">
+
+#### 需要进入技术交流群的同学，添加我的个人微信号：silently9527
+
+<img width="200" src="https://tva1.sinaimg.cn/large/008i3skNgy1gteyh15a44j60h40g03zo02.jpg" alt="silently9527">
+
 
 ## 我的技术博客
 [https://silently9527.cn/](https://silently9527.cn/)
