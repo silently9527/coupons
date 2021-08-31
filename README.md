@@ -122,7 +122,7 @@ coupons
 | Nginx         | 1.10   | http://nginx.org/en/download.html                            |
 
 ## 部署文档
-[https://silently9527.cn/?p=67](https://silently9527.cn/?p=67)
+[淘客项目coupons在 Linux 环境部署指南](https://silently9527.cn/?p=67)
 
 **有任何部署疑问，欢迎给我留言**
 
