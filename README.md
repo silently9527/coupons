@@ -122,7 +122,8 @@ coupons
 | Nginx         | 1.10   | http://nginx.org/en/download.html                            |
 
 ## 部署文档
-[淘客项目coupons在 Linux 环境部署指南](https://silently9527.cn/?p=67)
+* [淘客项目coupons在 Linux 环境部署指南](https://silently9527.cn/?p=67)
+* [使用Docker镜像部署Coupons淘宝客项目](https://silently9527.cn/?p=70)
 
 **有任何部署疑问，欢迎给我留言**
 
