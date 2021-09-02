@@ -122,7 +122,7 @@ coupons
 | Nginx         | 1.10   | http://nginx.org/en/download.html                            |
 
 ## 部署文档
-关注微信公众号：`贝塔学JAVA` ;回复`文档`获取部署文档
+[淘客项目coupons在 Linux 环境部署指南](https://silently9527.cn/?p=67)
 
 **有任何部署疑问，欢迎给我留言**
 
