@@ -1,6 +1,0 @@
-package com.huaan9527.mall.webapi.domain.enums;
-
-public enum Urlype {
-    H5,
-    Native
-}

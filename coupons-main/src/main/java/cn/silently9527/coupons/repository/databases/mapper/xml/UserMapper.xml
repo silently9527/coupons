@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silently9527.coupons.repository.databases.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.silently9527.coupons.repository.databases.entity.User">
+        <id column="user_id" property="userId" />
+        <result column="name" property="name" />
+        <result column="phone" property="phone" />
+        <result column="email" property="email" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="status" property="status" />
+        <result column="deleted" property="deleted" />
+        <result column="locked" property="locked" />
+        <result column="create_user" property="createUser" />
+        <result column="gmt_created" property="gmtCreated" />
+        <result column="modified_user" property="modifiedUser" />
+        <result column="gmt_modified" property="gmtModified" />
+        <result column="avatar" property="avatar" />
+        <result column="last_login_ip" property="lastLoginIp" />
+        <result column="last_gmt_login_time" property="lastGmtLoginTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id, name, phone, email, username, password, status, deleted, locked, create_user_id, gmt_created,
+        modified_user_id, gmt_modified, avatar, last_login_ip, last_gmt_login_time
+    </sql>
+
+
+    <select id="getUserAndRoleInfo" resultType="cn.silently9527.coupons.repository.databases.model.UserHasRole">
+        select u.user_id, u.name, u.phone, u.email, u.username, u.status, u.locked,u.create_user,
+        u.gmt_created, u.modified_user, u.gmt_modified, u.avatar, u.last_login_ip, u.last_gmt_login_time,
+	    group_concat( distinct ( r.name ) ) as roleNames
+        from
+            user u
+            left join user_role ur on u.user_id = ur.user_id
+            left join role r on ur.role_id = r.role_id
+        where
+            u.deleted = 0
+        <if test="name != null and name != ''">
+            and u.name like CONCAT('%',#{name},'%')
+        </if>
+        <if test="username != null and username != ''">
+            and u.username like CONCAT('%',#{username},'%')
+        </if>
+        <if test="status != null">
+            and u.status = #{status}
+        </if>
+        <choose>
+            <when test="locked != null and locked == true">
+                and u.locked &gt; 5
+            </when>
+            <otherwise>
+                and u.locked &lt;= 5
+            </otherwise>
+        </choose>
+        group by
+            user_id
+        order by
+            u.gmt_created desc
+    </select>
+
+
+    <!--通过角色id更新用户状态-->
+    <update id="updateStatusByRoleId">
+        update user u
+        left join user_role ur on u.user_id = ur.user_id
+        set u.`status` = #{status}
+        where
+            ur.role_id = #{roleId}
+    </update>
+
+</mapper>

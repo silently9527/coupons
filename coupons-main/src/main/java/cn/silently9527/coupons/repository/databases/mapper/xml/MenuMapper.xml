@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silently9527.coupons.repository.databases.mapper.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.silently9527.coupons.repository.databases.entity.Menu">
+        <id column="menu_id" property="menuId" />
+        <result column="parent_id" property="parentId" />
+        <result column="type" property="type" />
+        <result column="title" property="title" />
+        <result column="permissions" property="permissions" />
+        <result column="component" property="component" />
+        <result column="icon" property="icon" />
+        <result column="order_num" property="orderNum" />
+        <result column="path" property="path" />
+        <result column="enable" property="enable" />
+        <result column="deleted" property="deleted" />
+        <result column="html_target" property="htmlTarget" />
+        <result column="plugin_menu" property="pluginMenu" />
+        <result column="plugin_id" property="pluginId" />
+        <result column="plugin_app_name" property="pluginAppName" />
+        <result column="plugin_app_path" property="pluginAppPath" />
+        <result column="plugin_root_routing" property="pluginRootRouting" />
+        <result column="create_user" property="createUser" />
+        <result column="gmt_created" property="gmtCreated" />
+        <result column="modified_user" property="modifiedUser" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        menu_id, parent_id, type, title, permissions, component, icon, order_num, path, enable, deleted, html_target,
+        plugin_menu, plugin_id, plugin_app_name, plugin_app_path, plugin_root_routing,
+        create_user, gmt_created, modified_user, gmt_modified
+    </sql>
+
+    <select id="getMenuByRoleIds" resultMap="BaseResultMap">
+        select m.*
+        from menu m
+        left join role_menu rm on m.menu_id = rm.menu_id
+        where m.deleted = 0 and m.enable = 1 and rm.role_id in
+        <foreach collection="roleIds" item="roleId" index="index" open="(" close=")" separator=",">
+            #{roleId}
+        </foreach>
+
+        <if test="menuTypes != null">
+            <foreach collection="menuTypes" item="menuType" open="AND (" close=")" separator="or" >
+                m.type = #{menuType}
+            </foreach>
+        </if>
+        order by m.order_num asc;
+    </select>
+
+
+    <select id="getNavByRoleCodes" resultMap="BaseResultMap">
+        select m.*
+        from menu m
+        left join role_menu rm on rm.menu_id = m.menu_id
+        left join role r on r.role_id = rm.role_id
+        where m.deleted = 0 and m.enable = 1 and (m.type = 1 or m.type = 2) and r.code in
+        <foreach collection="roleCodes" item="roleCode" index="index" open="(" close=")" separator=",">
+            #{roleCode}
+        </foreach>
+        order by m.order_num asc;
+    </select>
+
+    <select id="getMenuTree" resultType="cn.silently9527.coupons.core.security.model.MenuTree">
+        select * from menu where deleted = 0
+        <if test="havePluginMenu != null and havePluginMenu==false">
+            and plugin_menu = 0
+        </if>
+        order by order_num asc
+    </select>
+
+    <select id="getMenuTreeByRole" resultType="cn.silently9527.coupons.core.security.model.MenuTree">
+        select m.*
+        from menu m
+        left join role_menu rm on m.menu_id = rm.menu_id
+        left join role r on r.role_id = rm.role_id
+        where m.deleted = 0 and m.enable = 1 and r.code in
+        <foreach collection="roleCodes" item="roleCode" index="index" open="(" close=")" separator=",">
+            #{roleCode}
+        </foreach>
+        <if test="havePluginMenu != null and havePluginMenu==false">
+            and m.plugin_menu = 0
+        </if>
+        order by m.order_num asc;
+    </select>
+
+</mapper>

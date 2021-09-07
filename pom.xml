@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.silently9527</groupId>
+    <artifactId>coupons</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>coupons-main</module>
+        <module>coupons-runner</module>
+        <module>plugins</module>
+    </modules>
+
+    <name>coupons</name>
+    <description>基于插件思想的开源淘客项目</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+
+        <!-- 是否跳过打包前端文件 -->
+        <web.build.skip>true</web.build.skip>
+        <!-- 是否跳过前端编译文件清除 -->
+        <web.clean.skip>true</web.clean.skip>
+        <!-- 前端文件目录 -->
+        <web.path/>
+        <!-- 前端编译目录 -->
+        <web.build.path/>
+        <!-- web存放在resources下的目录 -->
+        <web.resources.path/>
+    </properties>
+
+    <profiles>
+        <!-- 使用maven的profile实现动态指定命令-->
+        <profile>
+            <id>window</id>
+            <properties>
+                <npm>npm.cmd</npm>
+            </properties>
+
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <id>linux</id>
+            <properties>
+                <npm>npm</npm>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <configuration>
+                        <filesets>
+                            <fileset>
+                                <directory>${web.build.path}</directory>
+                                <includes>
+                                    <include>**/*</include>
+                                </includes>
+                                <followSymlinks>false</followSymlinks>
+                            </fileset>
+                            <fileset>
+                                <directory>${basedir}/src/main/resources/${web.resources.path}</directory>
+                                <includes>
+                                    <include>**/*</include>
+                                </includes>
+                                <followSymlinks>false</followSymlinks>
+                            </fileset>
+                        </filesets>
+                        <skip>${web.clean.skip}</skip>
+                        <failOnError>true</failOnError>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>1.6.0</version>
+                    <configuration>
+                        <skip>${web.build.skip}</skip>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>exec-npm-install</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${npm}</executable>
+                                <arguments>
+                                    <argument>install</argument>
+                                </arguments>
+                                <workingDirectory>${web.path}</workingDirectory>
+                            </configuration>
+                        </execution>
+
+                        <execution>
+                            <id>exec-npm-run-build</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>exec</goal>
+                            </goals>
+                            <configuration>
+                                <executable>${npm}</executable>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>build</argument>
+                                </arguments>
+                                <workingDirectory>${web.path}</workingDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.5</version>
+                    <executions>
+                        <execution>
+                            <id>copy-web</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${basedir}/src/main/resources</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${web.build.path}</directory>
+                                        <targetPath>${web.resources.path}</targetPath>
+                                        <excludes>
+                                            <exclude>config.js</exclude>
+                                        </excludes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <!-- mvn clean install -Dmaven.test.skip=true -Dweb.build.skip=false -->
+</project>
