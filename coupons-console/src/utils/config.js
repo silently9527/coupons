@@ -13,7 +13,7 @@ const Config = {
     return window.config.env
   },
   isDev () {
-    return this.getEnv() === 'dev'
+    return this.gextEnv() === 'dev'
   },
   isProd () {
     return this.getEnv() === 'prod'

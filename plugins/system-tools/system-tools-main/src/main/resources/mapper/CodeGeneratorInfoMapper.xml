@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="grape.plugins.system.tools.mapper.CodeGeneratorInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="grape.plugins.system.tools.entity.CodeGeneratorInfo">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="driver_name" property="driverName" />
+        <result column="url" property="url" />
+        <result column="username" property="username" />
+        <result column="password" property="password" />
+        <result column="base_package_name" property="basePackageName" />
+        <result column="table_names" property="tableNames" />
+        <result column="gmt_created" property="gmtCreated" />
+        <result column="author" property="author" />
+        <result column="description" property="description" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, driver_name, url, username, password, base_package_name, gmt_created,
+        table_names, author, description
+    </sql>
+
+</mapper>

@@ -1,11 +1,11 @@
 // 开发环境下配置插件菜单和app信息
 
-const systemToolsRootRoute = '/grape-plugin-system-tools'
+const systemToolsRootRoute = '/system-tools'
 
 const pluginWebAppInfos = [
   {
-    appName: 'system-tools-web',
-    appPath: 'http://127.0.0.1:8082/plugin-web/grape-plugin-system-tools/',
+    appName: 'system-tools-console',
+    appPath: 'http://127.0.0.1:8082/plugin-web/system-tools/',
     rootRouting: systemToolsRootRoute
   }
 ]

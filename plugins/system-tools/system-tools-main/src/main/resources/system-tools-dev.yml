@@ -1,0 +1,4 @@
+webResourceLocations:
+  - classpath:system-tools-console
+codeGeneratorWebPath: /index.html
+codeGeneratorDir: codeGeneratorTemp

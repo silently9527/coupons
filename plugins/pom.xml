@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>plugins</artifactId>
+    <packaging>pom</packaging>
 
     <properties>
         <lombok.version>1.18.10</lombok.version>
