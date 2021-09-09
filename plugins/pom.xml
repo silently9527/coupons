@@ -12,6 +12,10 @@
     <artifactId>plugins</artifactId>
     <packaging>pom</packaging>
 
+    <modules>
+        <module>system-tools/system-tools-main</module>
+    </modules>
+
     <properties>
         <lombok.version>1.18.10</lombok.version>
         <junit.version>4.13</junit.version>

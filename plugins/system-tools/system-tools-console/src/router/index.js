@@ -1,6 +1,6 @@
 const router = [
   {
-    path: '/system-tools',
+    path: '/grape-plugin-system-tools',
     name: 'Home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     children: [
