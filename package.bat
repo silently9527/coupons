@@ -5,12 +5,12 @@ REM package
 call mvn clean install -Dmaven.test.skip=true
 
 REM del dist
-rmdir dist /s /q
+rmdir build /s /q
 
 REM create dist
-mkdir dist
-mkdir dist\plugins
-mkdir dist\plugin-configs
+mkdir build
+mkdir build\plugins
+mkdir build\plugin-configs
 
 REM copy main program and config
 xcopy grape-core\grape-server\target\grape-server-*-exec.jar dist /s /i

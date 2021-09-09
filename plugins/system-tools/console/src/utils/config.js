@@ -1,4 +1,4 @@
-const PLUGIN_ID = 'grape-plugin-system-tools'
+const PLUGIN_ID = 'system-tools'
 
 const Config = {
   getConfig () {

@@ -6,11 +6,10 @@
         <artifactId>plugins</artifactId>
         <groupId>cn.silently9527</groupId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>system-tools-main</artifactId>
+    <artifactId>system-tools</artifactId>
     <description>系统工具插件</description>
 
     <properties>
@@ -22,11 +21,11 @@
         <!-- 是否跳过前端编译文件清除 -->
         <web.clean.skip>${web.build.skip}</web.clean.skip>
         <!-- 前端文件目录 -->
-        <web.path>../system-tools-console</web.path>
+        <web.path>${basedir}/console</web.path>
         <!-- 前端编译目录 -->
-        <web.build.path>../system-tools-console/dist</web.build.path>
+        <web.build.path>${basedir}/console/dist</web.build.path>
         <!-- resources 存放前端的目录 -->
-        <web.resources.path>system-tools-console</web.resources.path>
+        <web.resources.path>console</web.resources.path>
     </properties>
 
     <dependencies>
