@@ -1,11 +1,12 @@
 #!/bin/sh
 
+# 删除上次构建的包
+rm -rf build
+
 # linux、mac上打包的脚本. 暂未实现
 # 打包项目
 mvn clean package -Dmaven.test.skip=true
 
-# 删除上次构建的包
-rm -rf build
 mkdir build
 mkdir build/plugins
 mkdir build/plugin-configs
@@ -24,5 +25,5 @@ cp bin/* build
 
 cd build
 
-rename coupons-main-*-exec.jar coupons-main.jar
-rename application-prod.yml application.yml
+mv coupons-main-*-exec.jar coupons-main.jar
+mv application-prod.yml application.yml

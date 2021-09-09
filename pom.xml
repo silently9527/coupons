@@ -41,10 +41,6 @@
             <properties>
                 <npm>npm.cmd</npm>
             </properties>
-
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
 
         <profile>
@@ -52,6 +48,9 @@
             <properties>
                 <npm>npm</npm>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 

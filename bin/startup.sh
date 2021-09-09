@@ -20,14 +20,14 @@ if [ -z "$JAVA_HOME" ]; then
   fi
 fi
 
-pid=`ps ax | grep -i 'grape.server' | grep ${target_dir} | grep java | grep -v grep | awk '{print $1}'`
+pid=`ps ax | grep -i 'coupons.main' | grep ${target_dir} | grep java | grep -v grep | awk '{print $1}'`
 if [ "$pid" ] ; then
-  echo "grape-server running."
+  echo "coupons-main running."
   exit -1;
 fi
 
 
-export SERVER="grape-server"
+export SERVER="coupons-main"
 
 export JAVA_HOME
 export JAVA="$JAVA_HOME/bin/java"
@@ -58,5 +58,5 @@ fi
 echo "$JAVA ${JAVA_OPT}"
 
 # start
-nohup $JAVA ${JAVA_OPT} grape.service >/dev/null 2>&1 &
+nohup $JAVA ${JAVA_OPT} coupons.main >/dev/null 2>&1 &
 echo -e "\033[36m start 'SERVER' success \033[0m"
