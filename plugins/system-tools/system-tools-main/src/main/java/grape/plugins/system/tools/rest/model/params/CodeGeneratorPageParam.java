@@ -1,6 +1,6 @@
 package grape.plugins.system.tools.rest.model.params;
 
-import com.gitee.starblues.grape.rest.common.param.PageParam;
+import cn.silently9527.coupons.rest.common.param.PageParam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

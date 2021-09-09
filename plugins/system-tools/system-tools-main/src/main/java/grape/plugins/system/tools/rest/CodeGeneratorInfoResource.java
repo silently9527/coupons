@@ -1,18 +1,18 @@
 package grape.plugins.system.tools.rest;
 
+import cn.hutool.core.util.StrUtil;
+import cn.silently9527.coupons.rest.common.BaseResource;
+import cn.silently9527.coupons.rest.common.Result;
+import cn.silently9527.coupons.rest.common.enums.ApiEnum;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import grape.plugins.system.tools.config.SystemToolsConfig;
 import grape.plugins.system.tools.entity.CodeGeneratorInfo;
 import grape.plugins.system.tools.rest.model.params.CodeGeneratorPageParam;
 import grape.plugins.system.tools.rest.model.params.CodeGeneratorUpdateParam;
 import grape.plugins.system.tools.service.CodeGeneratorInfoService;
-import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.gitee.starblues.grape.rest.common.BaseResource;
-import com.gitee.starblues.grape.rest.common.Result;
-import com.gitee.starblues.grape.rest.common.enums.ApiEnum;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import static com.gitee.starblues.grape.rest.common.Result.*;
+
+import static cn.silently9527.coupons.rest.common.Result.failure;
+import static cn.silently9527.coupons.rest.common.Result.success;
 
 /**
  * @author starBlues

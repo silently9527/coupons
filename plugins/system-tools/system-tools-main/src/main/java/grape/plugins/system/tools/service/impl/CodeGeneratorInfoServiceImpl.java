@@ -1,5 +1,6 @@
 package grape.plugins.system.tools.service.impl;
 
+import cn.silently9527.coupons.utils.DownloadUtils;
 import grape.plugins.system.tools.config.SystemToolsConfig;
 import grape.plugins.system.tools.entity.CodeGeneratorInfo;
 import grape.plugins.system.tools.mapper.CodeGeneratorInfoMapper;
@@ -8,7 +9,6 @@ import grape.plugins.system.tools.utils.CodeGenerator;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.ZipUtil;
 import com.baomidou.mybatisplus.annotation.DbType;
-import com.gitee.starblues.grape.utils.DownloadUtils;
 import com.gitee.starblues.extension.mybatis.mybatisplus.ServiceImplWrapper;
 import com.google.common.base.Splitter;
 import org.springframework.stereotype.Service;
