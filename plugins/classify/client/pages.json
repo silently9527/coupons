@@ -1,0 +1,12 @@
+{
+	"pages": [
+		{
+			"path": "plugins/product/pages/list",
+			"style": {}
+		},
+		{
+			"path": "plugins/product/pages/product",
+			"style": {}
+		}
+	]
+}

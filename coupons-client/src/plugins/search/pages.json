@@ -1,0 +1,11 @@
+{
+	"pages": [{
+			"path": "plugins/search/pages/result",
+			"style": {}
+		},
+		{
+			"path": "plugins/search/pages/search",
+			"style": {}
+		}
+	]
+}

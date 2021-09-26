@@ -8,8 +8,12 @@ rm -rf build
 mvn clean package -Dmaven.test.skip=true
 
 mkdir build
+mkdir build/client
 mkdir build/plugins
 mkdir build/plugin-configs
+
+# 拷贝客户端代码
+cp coupons-client/* build/client
 
 # 拷贝主项目文件
 cp coupons-main/target/coupons-main-*-exec.jar build

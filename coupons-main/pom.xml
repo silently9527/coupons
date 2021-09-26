@@ -59,6 +59,19 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>dataoke</groupId>
+            <artifactId>dataoke</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/openapi.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.55</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -229,6 +242,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <includeSystemScope>true</includeSystemScope>
                     <excludes>
                         <exclude>
                             <groupId>org.projectlombok</groupId>

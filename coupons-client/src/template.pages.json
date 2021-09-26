@@ -1,0 +1,19 @@
+{
+	"pages": [
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "FASHION搭配助手",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#f8f8f8",
+		"navigationStyle": "custom"
+	},
+	"tabBar": {
+		"backgroundColor": "#ffffff",
+		"color": "#000000",
+		"selectedColor": "#000000",
+		"list": [
+			
+		]
+	}
+}

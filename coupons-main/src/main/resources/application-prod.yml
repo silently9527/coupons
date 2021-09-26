@@ -63,6 +63,7 @@ plugin:
   backupPluginPath: backupPlugin
   # 上传的插件所存储的临时目录
   uploadTempPath: temp
+  clientPath: ./client
   # 禁用的插件id, 禁用后系统不会启动该插件. 为Set集合. 配置案例如下:
   # disablePluginIds:
   #   - disable-id1

@@ -47,7 +47,7 @@ public class SystemToolsConfig implements SpringBootMybatisPlusConfig, StaticRes
 
     @Override
     public void config(WebViewRegister register) {
-        register.setView("/index.html", "/system-tools", "system-tools/src/main/resources/system-tools-console")
+        register.setView("/index.html", "/system-tools", "system-tools")
                 .addMenu("code-generator", new MenuDefine("200", MenuDefine.Type.MENU,
                         "代码生成", "/code-generator").setIcon("code"));
     }

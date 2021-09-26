@@ -1,0 +1,8 @@
+{
+	"pages": [
+		{
+			"path": "plugins/classify/pages/classify",
+			"style": {}
+		}
+	]
+}

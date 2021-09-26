@@ -50,7 +50,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         .authorizeRequests()
                         // 取消 swagger 接口认证
                         .antMatchers("/doc.html", "/webjars/**", "/swagger-resources/**",
-                                "/v2/api-docs", "/v2/api-docs-ext")
+                                "/v2/api-docs", "/v2/api-docs-ext","/api/plugins/*/mi/**")
                         // 禁用以 iframe 方式访问界面
                         .permitAll();
 

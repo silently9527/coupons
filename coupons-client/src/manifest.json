@@ -1,0 +1,188 @@
+{
+    "name" : "FASHION",
+    "appid" : "__UNI__AA9534D",
+    "description" : "我不塑造时尚，我就是时尚",
+    "versionName" : "1.6.1",
+    "versionCode" : 161,
+    "transformPx" : false,
+    "app-plus" : {
+        /* 5+App特有相关 */
+        "usingComponents" : true,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : true,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        "modules" : {},
+        /* 模块配置 */
+        "distribute" : {
+            /* 应用发布信息 */
+            "android" : {
+                /* android打包配置 */
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_TASKS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_SMS\"/>",
+                    "<uses-permission android:name=\"android.permission.RECEIVE_SMS\"/>"
+                ],
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a", "x86" ],
+                "autoSdkPermissions" : false
+            },
+            "ios" : {},
+            /* ios打包配置 */
+            "sdkConfigs" : {
+                "ad" : {}
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                },
+                "ios" : {
+                    "appstore" : "unpackage/res/icons/1024x1024.png",
+                    "ipad" : {
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    }
+                }
+            },
+            "splashscreen" : {
+                "android" : {
+                    "hdpi" : "/static/splash.9.png",
+                    "xhdpi" : "/static/splash.9.png",
+                    "xxhdpi" : "/static/splash.9.png"
+                },
+                "ios" : {
+                    "iphone" : {
+                        "retina55" : "/Users/huaan9527/Desktop/170券/引导页.png",
+                        "retina55l" : "/Users/huaan9527/Desktop/170券/引导页.png",
+                        "retina47" : "/Users/huaan9527/Desktop/170券/引导页.png",
+                        "retina47l" : "/Users/huaan9527/Desktop/170券/引导页.png",
+                        "portrait-896h@2x" : "/Users/huaan9527/Desktop/170券/引导页.png",
+                        "landscape-896h@3x" : "/Users/huaan9527/Desktop/170券/引导页.png"
+                    },
+                    "storyboard" : "/Users/huaan9527/Documents/mall-app/storyboard/storyboard.zip"
+                },
+                "iosStyle" : "storyboard",
+                "androidStyle" : "default"
+            }
+        },
+        "uniStatistics" : {
+            "enable" : false
+        },
+        "nativePlugins" : {
+            "Hs-MobMessage" : {
+                "MOBAppKey" : "",
+                "MOBAppSecret" : "",
+                "__plugin_info__" : {
+                    "name" : "MobSMS免费短信验证码android+ios，苹果已过审",
+                    "description" : "已有应用通过苹果审核，每月免费10000条，可用短信模板ID,可发送文字和语言验证码",
+                    "platforms" : "Android,iOS",
+                    "url" : "https://ext.dcloud.net.cn/plugin?id=2189",
+                    "android_package_name" : "com.huaan9527.mall",
+                    "ios_bundle_id" : "com.huaan9527.mall",
+                    "isCloud" : true,
+                    "bought" : 1,
+                    "pid" : "2189",
+                    "parameters" : {
+                        "MOBAppKey" : {
+                            "des" : "MOBAppKey",
+                            "key" : "MOBAppKey",
+                            "value" : ""
+                        },
+                        "MOBAppSecret" : {
+                            "des" : "MOBAppSecret",
+                            "key" : "MOBAppSecret",
+                            "value" : ""
+                        }
+                    }
+                }
+            }
+        }
+    },
+    /* SDK配置 */
+    "quickapp" : {},
+    /* 快应用特有相关 */
+    "mp-weixin" : {
+        /* 小程序特有相关 */
+        "usingComponents" : true,
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : true,
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
+        },
+        "uniStatistics" : {
+            "enable" : false
+        }
+    },
+    "mp-qq" : {
+        "appid" : "",
+        "setting" : {
+            "minified" : true,
+            "es6" : true,
+            "postcss" : true,
+            "urlCheck" : true
+        },
+        "uniStatistics" : {
+            "enable" : false
+        }
+    },
+    "mp-toutiao" : {
+        "appid" : "",
+        "setting" : {
+            "es6" : true,
+            "postcss" : true,
+            "minified" : true
+        },
+        "uniStatistics" : {
+            "enable" : false
+        }
+    },
+    "uniStatistics" : {
+        "enable" : false
+    },
+    "h5" : {
+        "uniStatistics" : {
+            "enable" : false
+        },
+        "domain" : "http://m.szjx.top",
+        "title" : "FASHION搭配助手",
+        "router" : {
+            "mode" : "hash"
+        }
+    },
+    "mp-alipay" : {
+        "uniStatistics" : {
+            "enable" : false
+        }
+    },
+    "mp-baidu" : {
+        "uniStatistics" : {
+            "enable" : false
+        }
+    }
+}

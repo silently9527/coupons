@@ -15,6 +15,7 @@
 
     <modules>
         <module>system-tools</module>
+        <module>classify</module>
     </modules>
 
     <properties>

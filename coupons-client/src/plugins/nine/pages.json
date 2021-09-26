@@ -1,0 +1,6 @@
+{
+	"pages": [{
+		"path": "plugins/nine/pages/nine",
+		"style": {}
+	}]
+}

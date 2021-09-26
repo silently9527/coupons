@@ -1,0 +1,6 @@
+{
+	"pages": [{
+		"path": "plugins/index/pages/index",
+		"style": {}
+	}]
+}

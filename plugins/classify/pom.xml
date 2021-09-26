@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>plugins</artifactId>
+        <groupId>cn.silently9527</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <description>商品分类插件</description>
+
+    <artifactId>classify</artifactId>
+
+    <properties>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <velocity.version>2.2</velocity.version>
+
+        <!-- 是否跳过打包前端文件 -->
+        <web.build.skip>true</web.build.skip>
+        <!-- 是否跳过前端编译文件清除 -->
+        <web.clean.skip>${web.build.skip}</web.clean.skip>
+        <!-- 前端文件目录 -->
+        <web.path>${basedir}/console</web.path>
+        <!-- 前端编译目录 -->
+        <web.build.path>${basedir}/console/dist</web.build.path>
+        <!-- resources 存放前端的目录 -->
+        <web.resources.path>console</web.resources.path>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

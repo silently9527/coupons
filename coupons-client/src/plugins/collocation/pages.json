@@ -1,0 +1,12 @@
+{
+	"pages": [
+		{
+			"path": "plugins/collocation/pages/index",
+			"style": {}
+		},
+		{
+			"path": "plugins/collocation/pages/detail",
+			"style": {}
+		}
+	]
+}

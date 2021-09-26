@@ -4,7 +4,7 @@ const systemToolsRootRoute = '/system-tools'
 
 const pluginWebAppInfos = [
   {
-    appName: 'system-tools-console',
+    appName: 'system-tools',
     appPath: 'http://127.0.0.1:8082/plugin-web/system-tools/',
     rootRouting: systemToolsRootRoute
   }
