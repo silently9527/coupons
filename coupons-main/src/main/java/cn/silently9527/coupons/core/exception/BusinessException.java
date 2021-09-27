@@ -2,10 +2,11 @@ package cn.silently9527.coupons.core.exception;
 
 /**
  * 业务异常
+ *
  * @author starBlues
  * @version 1.0
  */
-public class BusinessException extends Exception{
+public class BusinessException extends RuntimeException {
 
     public BusinessException() {
         super();

@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 public class AuthUserInfo {
 
-
+    private String userId;
     private String name;
     private String username;
     private String avatar;

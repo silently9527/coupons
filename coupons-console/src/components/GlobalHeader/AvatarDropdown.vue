@@ -1,8 +1,8 @@
 <template>
   <a-dropdown v-if="currentUser && currentUser.name" placement="bottomRight">
     <span class="ant-pro-account-avatar">
-      <a-avatar size="small" :src="getAvatar()" class="antd-pro-global-header-index-avatar" />
-      <span>{{ currentUser.name }}</span>
+      <a-avatar shape="square" :src="getAvatar()" class="antd-pro-global-header-index-avatar" />
+      <span style="margin-left: 10px;font-size:14px">{{ currentUser.name }}</span>
     </span>
     <template v-slot:overlay>
       <a-menu class="ant-pro-drop-down menu" :selected-keys="[]">

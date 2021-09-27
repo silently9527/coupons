@@ -226,3 +226,38 @@ INSERT INTO `mall-coupons`.`menu` (`id`, `created_date`, `updated_date`, `create
 VALUES (18, '2020-10-10 21:52:58', '2020-10-10 21:53:01', 1, 1, '时尚毛呢', '时尚毛呢',
         'https://img.alicdn.com/imgextra/i2/2053469401/O1CN01AHW0za2JJhtdVzbXv-2053469401.png',
         '/pages/product/list?subcid=121334', 1, 0, 0, 'Native');
+
+
+DROP TABLE IF EXISTS `tab_bar`;
+CREATE TABLE `tab_bar`
+(
+    `id`                 varchar(32)  NOT NULL COMMENT 'id',
+    `user_id`            varchar(32)  NOT NULL COMMENT '用户id',
+    `page_path`          varchar(255) DEFAULT NULL COMMENT '页面路径',
+    `icon_path`          varchar(255) DEFAULT NULL COMMENT '图标路径',
+    `selected_icon_path` varchar(255) NOT NULL COMMENT '选中后图标路径',
+    `text`               varchar(10) COMMENT 'tab名',
+    `remark`             varchar(255) COMMENT '备注',
+    `sorted`             tinyint(4) NOT NULL DEFAULT 1 COMMENT '排序',
+    `status`             tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态（1启用, 0停用）',
+    `create_user`        varchar(32)  NOT NULL COMMENT '创建用户',
+    `gmt_created`        varchar(32)  NOT NULL COMMENT '创建时间',
+    `modified_user`      varchar(32)  NOT NULL COMMENT '修改用户',
+    `gmt_modified`       varchar(32)  NOT NULL COMMENT '修改时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB  COMMENT = '客户端的tabBar配置';
+
+
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE `config`
+(
+    `id`            varchar(32) NOT NULL COMMENT 'id',
+    `user_id`       varchar(32) NOT NULL COMMENT '用户id',
+    `config_type`   varchar(255)  DEFAULT NULL COMMENT '配置的类型',
+    `text_json`     varchar(5000) DEFAULT NULL COMMENT '配置JSON字符串',
+    `create_user`   varchar(32) NOT NULL COMMENT '创建用户',
+    `gmt_created`   varchar(32) NOT NULL COMMENT '创建时间',
+    `modified_user` varchar(32) NOT NULL COMMENT '修改用户',
+    `gmt_modified`  varchar(32) NOT NULL COMMENT '修改时间',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB  COMMENT = '客户端的tabBar配置';

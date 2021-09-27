@@ -26,7 +26,7 @@ public class MenuUpdatedParam {
      * 父菜单id
      */
     @ApiModelProperty(name = "parentId", value = "父菜单id", required = true)
-    @NotEmpty(message = "父菜单不能为空")
+//    @NotEmpty(message = "父菜单不能为空")
     private String parentId;
 
     /**

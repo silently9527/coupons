@@ -22,6 +22,7 @@ public interface UserService extends IService<User>, UserDetailsService {
 
     /**
      * 分页查询用户列表
+     *
      * @param param 参数
      * @return 分页结果
      */
@@ -30,6 +31,7 @@ public interface UserService extends IService<User>, UserDetailsService {
 
     /**
      * 通过用户名获取用户
+     *
      * @param username 用户名
      * @return 用户
      */
@@ -38,13 +40,15 @@ public interface UserService extends IService<User>, UserDetailsService {
 
     /**
      * 得到当前认证后的用户信息
+     *
      * @return AuthUserInfo
      */
-    AuthUserInfo getAuthUserInfo() throws Exception;
+    AuthUserInfo getAuthUserInfo();
 
 
     /**
      * 添加用户
+     *
      * @param param 添加用户参数
      * @throws Exception 添加异常
      */
@@ -53,6 +57,7 @@ public interface UserService extends IService<User>, UserDetailsService {
 
     /**
      * 修改用户
+     *
      * @param param 更新用户参数
      * @throws Exception 添加异常
      */
@@ -60,6 +65,7 @@ public interface UserService extends IService<User>, UserDetailsService {
 
     /**
      * 修改用户状态
+     *
      * @param userId 用户id
      * @param status 状态
      * @throws Exception 更新状态异常
@@ -68,22 +74,24 @@ public interface UserService extends IService<User>, UserDetailsService {
 
     /**
      * 重置用户密码
-     * @param userId 用户id
+     *
+     * @param userId      用户id
      * @param newPassword 重置的新密码
      * @throws Exception 重置密码异常
      */
     void resetPassword(String userId, String newPassword) throws Exception;
 
 
-
     /**
      * 通过用户id删除用户
+     *
      * @param userId 用户id
      */
     void delete(String userId) throws Exception;
 
     /**
      * 得到超级管理员用户
+     *
      * @return User
      */
     User getSuperAdmin();

@@ -133,12 +133,12 @@
     {
       title: '姓名',
       dataIndex: 'name',
-      width: 80
+      width: 150
     },
     {
       title: '用户名',
       dataIndex: 'username',
-      width: 80
+      width: 180
     },
     {
       title: '所属角色',

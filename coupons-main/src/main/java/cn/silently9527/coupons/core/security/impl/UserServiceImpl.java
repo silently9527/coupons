@@ -95,12 +95,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        if(StrUtil.isEmpty(username)){
+        if (StrUtil.isEmpty(username)) {
             throw new UsernameNotFoundException("用户名或密码错误");
         }
         User sysUser = query().eq("username", username)
                 .one();
-        if(sysUser != null){
+        if (sysUser != null) {
             return new UserDetailsModel(sysUser, getPermissionModels(sysUser));
         } else {
             throw new UsernameNotFoundException("用户名或密码错误");
@@ -109,21 +109,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
 
     @Override
-    public AuthUserInfo getAuthUserInfo() throws Exception {
+    public AuthUserInfo getAuthUserInfo() {
         String currentUsername = AuthUtils.getCurrentUsername();
-        if(StrUtil.isEmpty(currentUsername)){
+        if (StrUtil.isEmpty(currentUsername)) {
             throw new BusinessException("没有发现当前授权的用户");
         }
         Collection<? extends GrantedAuthority> authorities = AuthUtils.getCurrentGrantedAuthority();
         Set<String> roles = Sets.newHashSet();
         Set<String> permissions = Sets.newHashSet();
-        if(!authorities.isEmpty()){
+        if (!authorities.isEmpty()) {
             for (GrantedAuthority grantedAuthority : authorities) {
                 String authority = grantedAuthority.getAuthority();
-                if(StrUtil.isEmpty(authority)){
+                if (StrUtil.isEmpty(authority)) {
                     continue;
                 }
-                if(authority.startsWith(RoleGrantedAuthority.ROLE_GRANTED_AUTHORITY_PREFIX)){
+                if (authority.startsWith(RoleGrantedAuthority.ROLE_GRANTED_AUTHORITY_PREFIX)) {
                     // 角色
                     roles.add(authority.replace(RoleGrantedAuthority.ROLE_GRANTED_AUTHORITY_PREFIX, ""));
                 } else {
@@ -132,10 +132,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             }
         }
         User user = getByUsername(currentUsername);
-        if(user == null){
+        if (user == null) {
             throw new BusinessException("没有发现用户: " + currentUsername);
         }
         AuthUserInfo authUserInfo = new AuthUserInfo();
+        authUserInfo.setUserId(user.getUserId());
         authUserInfo.setName(user.getName());
         authUserInfo.setUsername(currentUsername);
         authUserInfo.setRoles(roles);
@@ -158,9 +159,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Preconditions.checkNotNull(roleIds, "角色id集合不能为空");
         Preconditions.checkArgument(!roleIds.isEmpty(), "角色id集合不能为空");
 
-        synchronized (this){
+        synchronized (this) {
             User databaseUser = getByUsername(username);
-            if(databaseUser != null){
+            if (databaseUser != null) {
                 throw new BusinessException("已经存在用户名: " + username);
             }
 
@@ -168,7 +169,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             BeanUtils.copyProperties(param, user);
             // 设置密码
             String password = user.getPassword();
-            if(!StrUtil.isEmpty(password)){
+            if (!StrUtil.isEmpty(password)) {
                 user.setPassword(passwordEncoder.encode(password));
             }
             user.setUserId(IDUtils.uuid());
@@ -191,13 +192,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         Set<String> roleIds = param.getRoleIds();
         Preconditions.checkNotNull(roleIds, "角色id集合不能为空");
         checkSuperUser(param.getUserId());
-        synchronized (this){
+        synchronized (this) {
             User databaseUser = getById(param.getUserId());
-            if(databaseUser == null){
+            if (databaseUser == null) {
                 throw new BusinessException("没有发现用户: " + param.getUserId());
             }
-            if(!Objects.equals(databaseUser.getUsername(), param.getUsername())){
-                if(getByUsername(param.getUsername()) != null){
+            if (!Objects.equals(databaseUser.getUsername(), param.getUsername())) {
+                if (getByUsername(param.getUsername()) != null) {
                     throw new BusinessException("已经存在用户名: " + param.getUsername());
                 }
             }
@@ -216,15 +217,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Override
     public synchronized void updateStatus(String userId, Integer status) throws Exception {
         Preconditions.checkArgument(!StrUtil.isEmpty(userId), "用户id不能为空");
-        if(status == null){
+        if (status == null) {
             return;
         }
         checkSuperUser(userId);
         User databaseUser = getById(userId);
-        if(databaseUser == null){
+        if (databaseUser == null) {
             throw new BusinessException("没有发现用户: " + userId);
         }
-        if(Objects.equals(databaseUser.getStatus(), status)){
+        if (Objects.equals(databaseUser.getStatus(), status)) {
             return;
         }
         User updateBean = new User();
@@ -239,12 +240,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public synchronized void resetPassword(String userId, String newPassword) throws Exception {
         Preconditions.checkArgument(!StrUtil.isEmpty(userId), "用户id不能为空");
         Preconditions.checkArgument(!StrUtil.isEmpty(newPassword), "新密码不能为空");
-        if(newPassword.length() < 6){
+        if (newPassword.length() < 6) {
             throw new BusinessException("密码不能小于6个字符");
         }
         checkSuperUser(userId);
         User databaseUser = getById(userId);
-        if(databaseUser == null){
+        if (databaseUser == null) {
             throw new BusinessException("没有发现用户: " + userId);
         }
         User updateBean = new User();
@@ -258,18 +259,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public void delete(String userId) throws Exception {
-        if(StrUtil.isEmpty(userId)){
+        if (StrUtil.isEmpty(userId)) {
             return;
         }
         checkSuperUser(userId);
-        synchronized (this){
+        synchronized (this) {
             removeById(userId);
         }
     }
 
     @Override
     public synchronized User getSuperAdmin() {
-        if(superUser != null){
+        if (superUser != null) {
             return superUser;
         }
         superUser = getById(systemProp.getSuperAdminId());
@@ -278,13 +279,14 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     /**
      * 获取当前用户所拥有的权限
+     *
      * @param user 系统用户
      * @return 权限集合
      */
-    private Set<? extends GrantedAuthority> getPermissionModels(User user){
+    private Set<? extends GrantedAuthority> getPermissionModels(User user) {
         List<Role> roles = roleMapper.getRoleByUserId(user.getUserId());
 
-        if(roles == null || roles.isEmpty()){
+        if (roles == null || roles.isEmpty()) {
             return null;
         }
 
@@ -293,41 +295,41 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         boolean haveSuperRole = false;
         Set<String> roleIds = Sets.newHashSetWithExpectedSize(roles.size());
         for (Role role : roles) {
-            if(role == null || StrUtil.isEmpty(role.getCode())){
+            if (role == null || StrUtil.isEmpty(role.getCode())) {
                 continue;
             }
             String code = role.getCode();
-            if(Objects.equals(systemProp.getSuperRoleCode(), code)){
+            if (Objects.equals(systemProp.getSuperRoleCode(), code)) {
                 haveSuperRole = true;
             }
             grantedAuthorities.add(new RoleGrantedAuthority(role));
             roleIds.add(role.getRoleId());
         }
 
-        if(haveSuperRole){
+        if (haveSuperRole) {
             // 如果是超级角色, 则返回 *:* 权限
             grantedAuthorities.add(new PermissionGrantedAuthority(PreAuthorizeService.SUPPER_PERMISSION));
             return grantedAuthorities;
         }
 
-        if(roleIds.isEmpty()){
-           return grantedAuthorities;
+        if (roleIds.isEmpty()) {
+            return grantedAuthorities;
         }
-        List<Menu>  menus = menuMapper.getMenuByRoleIds(roleIds, null);
+        List<Menu> menus = menuMapper.getMenuByRoleIds(roleIds, null);
         // 拥有的权限
-        if(menus == null || menus.isEmpty()){
+        if (menus == null || menus.isEmpty()) {
             return grantedAuthorities;
         }
 
         for (Menu menu : menus) {
-            if(menu == null){
+            if (menu == null) {
                 continue;
             }
             String permissionsString = menu.getPermissions();
-            if(StrUtil.isEmpty(permissionsString)){
+            if (StrUtil.isEmpty(permissionsString)) {
                 continue;
             }
-            if(permissionsString.contains(",")){
+            if (permissionsString.contains(",")) {
                 List<String> splitPermissions = Splitter.on(",")
                         .trimResults()
                         .omitEmptyStrings()
@@ -344,15 +346,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     private List<UserRole> getUserRole(String userId, Set<String> roleIds) throws Exception {
         List<Role> roles = roleMapper.selectBatchIds(roleIds);
-        if(roles == null || roles.isEmpty()){
+        if (roles == null || roles.isEmpty()) {
             throw new BusinessException("没有发现角色");
         }
         List<UserRole> userRoles = Lists.newArrayListWithCapacity(roles.size());
         for (Role role : roles) {
-            if(role == null){
+            if (role == null) {
                 continue;
             }
-            if(role.getStatus() == 0){
+            if (role.getStatus() == 0) {
                 throw new BusinessException("角色'" + role.getName() + "'已经被禁用, 无法分配");
             }
             UserRole userRole = new UserRole();
@@ -360,24 +362,24 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             userRole.setRoleId(role.getRoleId());
             userRoles.add(userRole);
         }
-        if(userRoles.isEmpty()){
+        if (userRoles.isEmpty()) {
             throw new BusinessException("没有发现合适的角色");
         }
         return userRoles;
     }
 
 
-    public static String getCurrentUsername(){
+    public static String getCurrentUsername() {
         String currentUsername = AuthUtils.getCurrentUsername();
-        if(StrUtil.isEmpty(currentUsername)) {
+        if (StrUtil.isEmpty(currentUsername)) {
             return "NOT_FOUND";
         }
         return currentUsername;
     }
 
-    private void checkSuperUser(String userId) throws Exception{
+    private void checkSuperUser(String userId) throws Exception {
         String superAdminId = systemProp.getSuperAdminId();
-        if(Objects.equals(superAdminId, userId)){
+        if (Objects.equals(superAdminId, userId)) {
             throw new BusinessException("不能操作超级管理员");
         }
     }

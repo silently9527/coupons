@@ -1,0 +1,94 @@
+package cn.silently9527.coupons.repository.databases.entity;
+
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+
+import java.io.Serializable;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 客户端的tabBar配置
+ * </p>
+ *
+ * @author silently9527
+ * @since 2021-09-26
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class TabBar implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.ASSIGN_UUID)
+    private String id;
+
+    /**
+     * 用户id
+     */
+    private String userId;
+
+    /**
+     * 页面路径
+     */
+    private String pagePath;
+
+    /**
+     * 图标路径
+     */
+    private String iconPath;
+
+    /**
+     * 选中后图标路径
+     */
+    private String selectedIconPath;
+
+    /**
+     * tab名
+     */
+    private String text;
+
+    private int sorted;
+
+    /**
+     * 状态（1启用, 0停用）
+     */
+    private Integer status;
+
+    private String remark;
+
+    /**
+     * 创建用户
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private String createUser;
+
+    /**
+     * 创建时间
+     */
+    @TableField(fill = FieldFill.INSERT)
+    private String gmtCreated;
+
+    /**
+     * 修改用户
+     */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String modifiedUser;
+
+    /**
+     * 修改时间
+     */
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String gmtModified;
+
+
+}

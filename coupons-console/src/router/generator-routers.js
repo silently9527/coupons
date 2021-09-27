@@ -40,7 +40,11 @@ const constantRouterComponents = {
   'AccountSettings': () => import('@/views/account/settings/Index'),
   'BasicSettings': () => import('@/views/account/settings/BasicSetting'),
   'SecuritySettings': () => import('@/views/account/settings/Security'),
-  'NotificationSettings': () => import('@/views/account/settings/Notification')
+  'NotificationSettings': () => import('@/views/account/settings/Notification'),
+
+  'TabBarManage': () => import('@/views/client/tabbar/Index'),
+  'CoreConfigManage': () => import('@/views/system/config/Index')
+
 }
 
 // 前端未找到页面路由（固定不用改）
