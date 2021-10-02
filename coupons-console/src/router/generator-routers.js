@@ -43,7 +43,8 @@ const constantRouterComponents = {
   'NotificationSettings': () => import('@/views/account/settings/Notification'),
 
   'TabBarManage': () => import('@/views/client/tabbar/Index'),
-  'CoreConfigManage': () => import('@/views/system/config/Index')
+  'CoreConfigManage': () => import('@/views/system/config/Index'),
+  'CodeManage': () => import('@/views/client/code/Index')
 
 }
 

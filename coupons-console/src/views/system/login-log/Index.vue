@@ -32,6 +32,7 @@
       </div>
       <div class="table-page-search-wrapper">
         <a-table
+          bordered
           :columns="columns"
           :row-key="record => record.id"
           :data-source="data"

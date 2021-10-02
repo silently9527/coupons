@@ -6,6 +6,7 @@
       </div>
       <div class="table-page-search-wrapper">
         <a-table
+          bordered
           :columns="columns"
           :data-source="data"
           :row-key="record => record.menuId"
@@ -95,7 +96,8 @@
     {
       title: '地址',
       dataIndex: 'path',
-      key: 'path'
+      key: 'path',
+      width: 200
     },
     {
       title: '类型',

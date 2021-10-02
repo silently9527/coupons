@@ -22,6 +22,7 @@
       </div>
       <div class="table-page-search-wrapper">
         <a-table
+          bordered
           :columns="columns"
           :row-key="record => record.clientId"
           :data-source="data"

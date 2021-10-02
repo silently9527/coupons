@@ -1,11 +1,12 @@
 <template>
   <global-footer class="footer custom-render">
     <template v-slot:links>
-      <a href="http://www.starblues.cn:8000" target="_blank">文档</a>
-      <a href="https://gitee.com/starblues/grape" target="_blank">Gitee</a>
+      <a href="https://silently9527.cn" target="_blank">文档</a>
+      <a href="https://github.com/silently9527/coupons" target="_blank">Github</a>
+      <a href="https://gitee.com/silently9527/mall-coupons-server" target="_blank">Gitee</a>
     </template>
     <template v-slot:copyright>
-      <a href="javascript:void(0);">Copyright © 2019-2021 StarBlues</a>
+      <a href="javascript:void(0);">Copyright © 2020-2021 Silently9527</a>
     </template>
   </global-footer>
 </template>
