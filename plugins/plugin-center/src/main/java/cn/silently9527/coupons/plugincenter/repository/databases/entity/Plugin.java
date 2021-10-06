@@ -1,4 +1,4 @@
-package cn.silently9527.coupons.repository.databases.entity;
+package cn.silently9527.coupons.plugincenter.repository.databases.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -57,14 +57,18 @@ public class Plugin implements Serializable {
 
     private String pluginName;
     private String icon;
+    private int status; //1启用 0禁用
     private String author;
     private String version;
-    private String desc;
+    private String description;
 
-    private String path;
+    private String downloadUrl;
     private String docUrl;
 
     private String price;
+
+    private String qrcode;
+    private String remark;
     private String password;
 
 

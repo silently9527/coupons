@@ -1,12 +1,18 @@
 // 开发环境下配置插件菜单和app信息
 
 const systemToolsRootRoute = '/system-tools'
+const pluginCenterRootRoute = '/plugin-center'
 
 const pluginWebAppInfos = [
   {
     appName: 'system-tools',
     appPath: 'http://127.0.0.1:8082/plugin-web/system-tools/',
     rootRouting: systemToolsRootRoute
+  },
+  {
+    appName: 'plugin-center',
+    appPath: 'http://127.0.0.1:8083/plugin-web/plugin-center/',
+    rootRouting: pluginCenterRootRoute
   }
 ]
 
@@ -35,6 +41,19 @@ const navigationInfos = [
       title: '生成代码',
       show: true,
       icon: 'code'
+    }
+  },
+  {
+    id: '1002',
+    parentId: '1000',
+    key: 'plugin-center',
+    path: `${pluginCenterRootRoute}/plugin-list`,
+    redirect: null,
+    component: 'PluginExtensionWeb',
+    meta: {
+      title: '插件中心管理',
+      show: true,
+      icon: 'pie-chart'
     }
   }
 ]

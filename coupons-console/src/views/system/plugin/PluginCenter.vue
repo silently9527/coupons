@@ -3,68 +3,98 @@
     <div class="plugin-center">
       <a-card class="plugin" v-for="plugin in plugins" :key="plugin.pluginId">
         <div slot="cover" class="content">
-          <img src="https://tva1.sinaimg.cn/large/008i3skNgy1guz0mpc7f5j605u05sq2u02.jpg"/>
+          <img width="150" :src="plugin.icon"/>
           <div class="info">
             <div class="title">
-              <a-tag color="cyan">官方</a-tag>MySQL-Percona分支单机安装镜像
+<!--              <a-tag color="cyan">官方</a-tag>-->
+              {{plugin.pluginName}}
             </div>
-            <div class="sharer margin-top-3"><span class="label">分享者：Silently9527</span></div>
-            <div class="version margin-top-3"><span class="label">版本：1.0.4</span></div>
-            <div class="desc margin-top-5">页面跳转路径有层级限制，转路径不能无限制跳转新页不能无限制跳转新页面 s.json里注册的vue页面。</div>
+            <div class="margin-top-3"><span class="price">价格：{{plugin.price === '0'?'免费':'￥'+plugin.price}}</span></div>
+            <div class="sharer margin-top-3"><span class="label">分享者：{{plugin.author}}</span></div>
+            <div class="version margin-top-3"><span class="label">版本：{{plugin.version}}</span></div>
+            <div class="desc margin-top-5">{{plugin.description}}</div>
           </div>
         </div>
         <template slot="actions" class="ant-card-actions">
-          <span><a-icon type="download"/>&nbsp;&nbsp;安装</span>
-          <span><a-icon type="file-markdown"/>&nbsp;&nbsp;文档</span>
+          <span @click="installFromPluginCenter(plugin)"><a-icon type="download"/>&nbsp;&nbsp;安装</span>
+          <a :href="plugin.docUrl" target="_blank"><span><a-icon type="file-markdown"/>&nbsp;&nbsp;文档</span></a>
         </template>
       </a-card>
     </div>
     <div style="display: flex;justify-content: end">
-      <pagination v-model="params.page" :total="50" show-less-items/>
+      <pagination :current="params.currentPage" :pageSize="params.pageSize" :total="total" @change="page" show-less-items />
     </div>
+    <modal v-model="visible"
+           :title="'安装插件：' + installPlugin.pluginName"
+           @ok="handleOk">
+      <div>
+        <a-form-model>
+          <a-form-model-item label="插件提取码">
+            <a-input placeholder="请输入提取码"/>
+          </a-form-model-item>
+        </a-form-model>
+      </div>
+
+      <div style="display: flex;justify-content: center;">
+        <p>{{ installPlugin.remark }}</p>
+      </div>
+      <a-divider />
+      <div style="display: flex;justify-content: center;">
+        <img width="180" :src="installPlugin.qrcode"/>
+      </div>
+    </modal>
   </div>
 </template>
 
 <script>
-import { pagination } from 'ant-design-vue'
+import { getPluginList } from '@/api/plugin-center'
+import { pagination, modal } from 'ant-design-vue'
+import { fetchResult } from '@/utils/fetchUtil'
 
   export default {
     name: 'PluginCenter',
     components: {
-      pagination
+      pagination, modal
     },
     data: () => {
       return {
         plugins: [
-          {
-            pluginId: 123
-          },
-          {
-            pluginId: 232
-          },
-          {
-            pluginId: 2111132
-          },
-          {
-            pluginId: 21245
-          },
-          {
-            pluginId: 432
-          },
-          {
-            pluginId: 432
-          }
         ],
+        visible: false,
+        total: 0,
         params: {
-          page: 1,
-          size: 10
-        }
+          currentPage: 1,
+          pageSize: 9
+        },
+        installPlugin: {}
       }
     },
-    mounted () {
-
+    created () {
+      this.fetchList(this.params)
     },
     methods: {
+      fetchList (params) {
+        getPluginList(params)
+          .then(res => {
+            if (fetchResult(res, false, true)) {
+              this.plugins = res.data.records
+              this.params.currentPage = res.data.current
+              this.total = res.data.total
+            }
+          })
+      },
+      page (currentPage) {
+        this.params.currentPage = currentPage
+        this.fetchList(this.params)
+      },
+      installFromPluginCenter (plugin) {
+        this.visible = true
+        this.installPlugin = plugin
+      },
+      handleOk () {
+        console.log('ok')
+
+      }
     }
   }
 </script>
@@ -97,6 +127,10 @@ import { pagination } from 'ant-design-vue'
         }
         .desc {
           font-size: 13px;
+        }
+        .price {
+          color: #dd524d;
+          font-size: 12px;
         }
       }
     }

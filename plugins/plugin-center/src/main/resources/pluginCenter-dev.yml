@@ -1,0 +1,4 @@
+webResourceLocations:
+  - classpath:console
+plugins:
+  storePath: /Users/herman/Desktop/coupons/plugins

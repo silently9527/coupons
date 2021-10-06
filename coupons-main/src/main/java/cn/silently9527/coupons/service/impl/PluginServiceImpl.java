@@ -1,75 +1,67 @@
 package cn.silently9527.coupons.service.impl;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.ZipUtil;
+import cn.silently9527.coupons.rest.common.param.PageParam;
+import cn.silently9527.coupons.rest.model.PluginDetail;
 import cn.silently9527.coupons.service.PluginService;
-import com.gitee.starblues.integration.IntegrationConfiguration;
-import com.gitee.starblues.integration.application.PluginApplication;
-import com.gitee.starblues.integration.operator.PluginOperator;
+import cn.silently9527.coupons.service.operation.PluginInstaller;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.File;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
+import java.io.ByteArrayInputStream;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class PluginServiceImpl implements PluginService {
-    @Value("${plugin.clientPath}")
-    private String clientPath;
+
+    @Value("${plugin.centerHost}")
+    private String pluginCenterHost;
     @Resource
-    private IntegrationConfiguration integrationConfiguration;
+    private PluginInstaller pluginInstaller;
     @Resource
-    private PluginApplication pluginApplication;
+    private RestTemplate restTemplate;
 
     @Override
-    public boolean installZip(MultipartFile zipFile) throws Exception {
-        ZipUtil.unzip(zipFile.getInputStream(), new File(integrationConfiguration.uploadTempPath()), StandardCharsets.UTF_8);
-        String fileName = this.getFileNameNotWithExt(Objects.requireNonNull(zipFile.getOriginalFilename()));
-
-        installPluginConfigFile(fileName);
-        installPluginJarFile(fileName);
-        installPluginClient(fileName);
-        //todo: 触发生成pages.json   manifest.json的事件
-
-        return false;
+    public void installZip(MultipartFile zipFile) throws Exception {
+        pluginInstaller.install(zipFile.getInputStream());
     }
 
-    private void installPluginClient(String fileName) {
-        File dir = new File(integrationConfiguration.uploadTempPath() + File.separator + fileName + File.separator + "client");
-        File des = new File(clientPath + File.separator + "plugins");
-        FileUtil.copy(dir, des, false);
-        new File(des, "client").renameTo(new File(des, fileName));
-    }
-
-    private void installPluginJarFile(String fileName) throws Exception {
-        File dir = new File(integrationConfiguration.uploadTempPath() + File.separator + fileName);
-        String[] files = dir.list((dir1, name) -> name.endsWith(".jar"));
-        String jarFilePath = files != null && files.length > 0 ? files[0] : null;
-
-        PluginOperator pluginOperator = pluginApplication.getPluginOperator();
-        if (jarFilePath != null) {
-            pluginOperator.install(Paths.get(dir + File.separator + jarFilePath));
+    @Override
+    public void onlineInstall(String pluginId, String password) {
+        try {
+            String url = pluginCenterHost + "/api/plugins/plugin-center/mi/plugins/install/" + pluginId + "/" + password;
+            ResponseEntity<byte[]> entity = restTemplate.getForEntity(url, byte[].class);
+            pluginInstaller.install(new ByteArrayInputStream(Objects.requireNonNull(entity.getBody())));
+        } catch (HttpServerErrorException e) {
+            log.error("online install fail", e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 
-    private void installPluginConfigFile(String fileName) throws Exception {
-        File dir = new File(integrationConfiguration.uploadTempPath() + File.separator + fileName + File.separator + "config");
-        String[] files = dir.list((dir1, name) -> name.endsWith(".yml"));
-        String configFilePath = files != null && files.length > 0 ? files[0] : null;
-
-        PluginOperator pluginOperator = pluginApplication.getPluginOperator();
-        if (configFilePath != null) {
-            pluginOperator.installConfigFile(Paths.get(dir + File.separator + configFilePath));
-        }
+    @Override
+    public IPage<PluginDetail> centerList(PageParam param) {
+        String url = pluginCenterHost + "/api/plugins/plugin-center/mi/plugins?pageSize=" + param.getPageSize() + "&currentPage=" + param.getCurrentPage();
+        String body = restTemplate.getForObject(url, String.class);
+        JSONObject result = JSON.parseObject(body).getJSONObject("data");
+        Page<PluginDetail> page = new Page<>(result.getLong("current"), result.getLong("size"), result.getLong("total"));
+        List<PluginDetail> records = result.getJSONArray("records")
+                .stream()
+                .map(PluginDetail::new)
+                .collect(Collectors.toList());
+        page.setRecords(records);
+        return page;
     }
-
-    private String getFileNameNotWithExt(String originalFilename) {
-        return originalFilename.substring(0, originalFilename.indexOf("."));
-    }
-
 
 }

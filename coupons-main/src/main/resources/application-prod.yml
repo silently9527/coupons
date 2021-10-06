@@ -49,6 +49,7 @@ system:
 
 # 插件的配置
 plugin:
+  centerHost: http://127.0.0.1:9000
   # 插件运行模式. dev: 开发环境, prod: 生产环境
   runMode: prod
   # 是否启用插件

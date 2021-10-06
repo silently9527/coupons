@@ -1,0 +1,4 @@
+webResourceLocations:
+  - classpath:console
+plugins:
+  storePath: /data/coupons/plugins

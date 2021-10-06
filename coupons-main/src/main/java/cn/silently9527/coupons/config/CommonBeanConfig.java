@@ -1,6 +1,8 @@
 package cn.silently9527.coupons.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author starBlues
@@ -10,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class CommonBeanConfig {
 
-
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }

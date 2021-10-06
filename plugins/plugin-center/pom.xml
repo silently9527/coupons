@@ -10,10 +10,53 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>plugin-center</artifactId>
+    <description>插件中心</description>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <mybatis-plus.version>3.4.1</mybatis-plus.version>
+        <velocity.version>2.2</velocity.version>
+
+        <!-- 是否跳过打包前端文件 -->
+        <web.build.skip>false</web.build.skip>
+        <!-- 是否跳过前端编译文件清除 -->
+        <web.clean.skip>${web.build.skip}</web.clean.skip>
+        <!-- 前端文件目录 -->
+        <web.path>${basedir}/console</web.path>
+        <!-- 前端编译目录 -->
+        <web.build.path>${basedir}/console/dist</web.build.path>
+        <!-- resources 存放前端的目录 -->
+        <web.resources.path>console</web.resources.path>
     </properties>
+
+    <dependencies>
+        <!-- mybatis-plus 代码生成依赖包 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus.version}</version>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
