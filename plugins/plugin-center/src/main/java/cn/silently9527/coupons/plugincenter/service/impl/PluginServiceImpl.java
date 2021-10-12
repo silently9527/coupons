@@ -19,6 +19,7 @@ public class PluginServiceImpl extends ServiceImpl<PluginMapper, Plugin> impleme
     public boolean savePlugin(AddPluginParam addPluginParam) {
         Plugin plugin = new Plugin();
         BeanUtils.copyProperties(addPluginParam, plugin);
+        plugin.setPassword(String.valueOf((int)((Math.random()*9+1)*100000)));
         save(plugin);
         return true;
     }

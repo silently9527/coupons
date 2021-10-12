@@ -17,7 +17,6 @@
         <module>system-tools</module>
         <module>classify</module>
         <module>plugin-center</module>
-        <module>collect</module>
     </modules>
 
     <properties>

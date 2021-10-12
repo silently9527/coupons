@@ -12,7 +12,7 @@ public class PluginDetail {
     private String gmtCreated;
     private String modifiedUser;
     private String gmtModified;
-
+    private String pluginCode; //英文
     private String pluginName;
     private String icon;
     private String author;
@@ -28,6 +28,9 @@ public class PluginDetail {
     private String qrcode;
     private String remark;
 
+    private String password;
+
+
     public PluginDetail() {
     }
 
@@ -39,6 +42,7 @@ public class PluginDetail {
         PluginDetail pluginDetail = new PluginDetail();
         BeanUtils.copyProperties(plugin, pluginDetail);
         pluginDetail.setDownloadUrl(null);
+        pluginDetail.setPassword(null);
         return pluginDetail;
     }
 }

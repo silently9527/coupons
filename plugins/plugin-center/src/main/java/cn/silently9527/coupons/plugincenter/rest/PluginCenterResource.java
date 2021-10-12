@@ -132,7 +132,7 @@ public class PluginCenterResource {
             return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
         } catch (Exception e) {
             log.error("下载出错:", e);
-            return new ResponseEntity<>(e.getMessage().getBytes(StandardCharsets.UTF_8), HttpStatus.INSUFFICIENT_STORAGE);
+            return new ResponseEntity<>(e.getMessage().getBytes(StandardCharsets.UTF_8), HttpStatus.BAD_REQUEST);
         }
     }
 

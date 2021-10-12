@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Objects;
 
 import static cn.silently9527.coupons.rest.common.Result.*;
 
@@ -63,6 +64,9 @@ public class PluginResource extends BaseResource {
             if (zipFile == null || zipFile.getSize() <= 0) {
                 return response(ApiEnum.OPERATE_ERROR, "安装失败, zip 包为空");
             }
+            if (!Objects.requireNonNull(zipFile.getOriginalFilename()).endsWith("zip")) {
+                return response(ApiEnum.OPERATE_ERROR, "上传的文件必须是zip");
+            }
 
             pluginService.installZip(zipFile);
             return response(ApiEnum.OPERATE_SUCCESS, "安装并启动成功");
@@ -73,10 +77,12 @@ public class PluginResource extends BaseResource {
     }
 
     @ApiOperation("在线安装插件")
-    @PostMapping("/online-install/{pluginId}/{password}")
-    public Result<String> onlineInstall(@PathVariable("pluginId") String pluginId, @PathVariable("password") String password) {
+    @PostMapping("/online-install/{pluginId}/{pluginCode}/{password}")
+    public Result<String> onlineInstall(@PathVariable("pluginId") String pluginId,
+                                        @PathVariable("pluginCode") String pluginCode,
+                                        @PathVariable("password") String password) {
         try {
-            pluginService.onlineInstall(pluginId, password);
+            pluginService.onlineInstall(pluginId,pluginCode ,password);
             return response(ApiEnum.OPERATE_SUCCESS, "安装并启动成功");
         } catch (Exception e) {
             log.error("安装插件失败.", e);

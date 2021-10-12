@@ -8,6 +8,8 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @ApiModel("新增插件参数对象")
 public class AddPluginParam {
+    @NotEmpty(message = "插件code必填")
+    private String pluginCode; //英文
     @NotEmpty(message = "插件名称必填")
     private String pluginName;
     private String icon;
@@ -25,5 +27,4 @@ public class AddPluginParam {
     private String price;
     private String qrcode;
     private String remark;
-    private String password;
 }

@@ -94,7 +94,7 @@ import Install from '@/views/system/plugin/Install'
         modelConfirmLoading: false
       }
     },
-    created () {
+    mounted () {
       this.fetchList({
         currentPage: 1
       })

@@ -4,7 +4,7 @@ const api = {
   pluginList: '/plugin',
   start: '/plugin/start',
   stop: '/plugin/stop',
-  install: '/plugin/install',
+  install: '/plugin/zip-install',
   uninstall: '/plugin/uninstall'
 }
 

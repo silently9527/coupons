@@ -55,6 +55,7 @@ public class Plugin implements Serializable {
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String gmtModified;
 
+    private String pluginCode; //英文
     private String pluginName;
     private String icon;
     private int status; //1启用 0禁用
@@ -62,7 +63,7 @@ public class Plugin implements Serializable {
     private String version;
     private String description;
 
-    private String downloadUrl;
+    private String downloadUrl; //文件路径
     private String docUrl;
 
     private String price;

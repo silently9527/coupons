@@ -38,7 +38,7 @@ export function deleteById (id) {
 }
 
 export function updateStatus (id, status) {
-  return request('json', true)({
+  return request('json', false)({
     url: `${api.commonApi}/${id}/${status}`,
     method: 'put'
   })

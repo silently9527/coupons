@@ -14,11 +14,11 @@
       :loading="loading"
     >
       <p slot="expandedRowRender" slot-scope="record" style="margin: 0">
+        <span>图片: {{ record.icon }}</span><br/>
         <span>二维码: {{ record.qrcode }}</span><br/>
         <span>提示: {{ record.remark }}</span><br/>
-        <span>创建用户: {{ record.qrcode }}</span><br/>
         <span>文档地址: {{ record.docUrl }}</span><br/>
-        <span>下载地址: {{ record.downloadUrl }}</span><br/>
+        <span>文件路径: {{ record.downloadUrl }}</span><br/>
         <span>描述: {{ record.description }}</span><br/>
       </p>
       <span slot="status" slot-scope="status">
@@ -67,9 +67,9 @@ const columns = [
     width: 120
   },
   {
-    title: '图标',
-    dataIndex: 'icon',
-    width: 200
+    title: '插件Code',
+    dataIndex: 'pluginCode',
+    width: 120
   },
   {
     title: '作者',
@@ -90,6 +90,11 @@ const columns = [
     title: '状态',
     dataIndex: 'status',
     scopedSlots: { customRender: 'status' },
+    width: 80
+  },
+  {
+    title: '提取码',
+    dataIndex: 'password',
     width: 80
   },
   {

@@ -8,6 +8,8 @@ public class PluginDetail {
     private String id;
 
     private String pluginName;
+    private String pluginCode; //英文
+
     private String icon;
     private String author;
     private String version;
@@ -23,6 +25,7 @@ public class PluginDetail {
         JSONObject jb = (JSONObject) o;
         this.id = jb.getString("id");
         this.pluginName = jb.getString("pluginName");
+        this.pluginCode = jb.getString("pluginCode");
         this.icon = jb.getString("icon");
         this.author = jb.getString("author");
         this.version = jb.getString("version");

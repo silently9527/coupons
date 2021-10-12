@@ -6,13 +6,15 @@
           <img width="150" :src="plugin.icon"/>
           <div class="info">
             <div class="title">
-<!--              <a-tag color="cyan">官方</a-tag>-->
-              {{plugin.pluginName}}
+              <!--<a-tag color="cyan">官方</a-tag>-->
+              {{ plugin.pluginName }}
             </div>
-            <div class="margin-top-3"><span class="price">价格：{{plugin.price === '0'?'免费':'￥'+plugin.price}}</span></div>
-            <div class="sharer margin-top-3"><span class="label">分享者：{{plugin.author}}</span></div>
-            <div class="version margin-top-3"><span class="label">版本：{{plugin.version}}</span></div>
-            <div class="desc margin-top-5">{{plugin.description}}</div>
+            <div class="margin-top-3"><span class="price">价格：{{
+                plugin.price === '0' ? '免费' : '￥' + plugin.price
+              }}</span></div>
+            <div class="sharer margin-top-3"><span class="label">分享者：{{ plugin.author }}</span></div>
+            <div class="version margin-top-3"><span class="label">版本：{{ plugin.version }}</span></div>
+            <div class="desc margin-top-5">{{ plugin.description }}</div>
           </div>
         </div>
         <template slot="actions" class="ant-card-actions">
@@ -22,15 +24,18 @@
       </a-card>
     </div>
     <div style="display: flex;justify-content: end">
-      <pagination :current="params.currentPage" :pageSize="params.pageSize" :total="total" @change="page" show-less-items />
+      <pagination :current="params.currentPage" :pageSize="params.pageSize" :total="total" @change="page"
+                  show-less-items/>
     </div>
     <modal v-model="visible"
            :title="'安装插件：' + installPlugin.pluginName"
+           ok-text="安装"
+           :ok-button-props="{ props: { icon: 'download', loading:installing } }"
            @ok="handleOk">
       <div>
-        <a-form-model>
-          <a-form-model-item label="插件提取码">
-            <a-input placeholder="请输入提取码"/>
+        <a-form-model ref="ruleForm" :model="form" :rules="rules">
+          <a-form-model-item label="插件提取码" ref="name" prop="password">
+            <a-input v-model="form.password" placeholder="请输入提取码"/>
           </a-form-model-item>
         </a-form-model>
       </div>
@@ -38,7 +43,7 @@
       <div style="display: flex;justify-content: center;">
         <p>{{ installPlugin.remark }}</p>
       </div>
-      <a-divider />
+      <a-divider/>
       <div style="display: flex;justify-content: center;">
         <img width="180" :src="installPlugin.qrcode"/>
       </div>
@@ -47,56 +52,76 @@
 </template>
 
 <script>
-import { getPluginList } from '@/api/plugin-center'
-import { pagination, modal } from 'ant-design-vue'
-import { fetchResult } from '@/utils/fetchUtil'
+import {getPluginList, onlineInstall} from '@/api/plugin-center'
+import {pagination, modal} from 'ant-design-vue'
+import {fetchResult} from '@/utils/fetchUtil'
 
-  export default {
-    name: 'PluginCenter',
-    components: {
-      pagination, modal
-    },
-    data: () => {
-      return {
-        plugins: [
-        ],
-        visible: false,
-        total: 0,
-        params: {
-          currentPage: 1,
-          pageSize: 9
-        },
-        installPlugin: {}
-      }
-    },
-    created () {
-      this.fetchList(this.params)
-    },
-    methods: {
-      fetchList (params) {
-        getPluginList(params)
-          .then(res => {
-            if (fetchResult(res, false, true)) {
-              this.plugins = res.data.records
-              this.params.currentPage = res.data.current
-              this.total = res.data.total
-            }
-          })
+export default {
+  name: 'PluginCenter',
+  components: {
+    pagination, modal
+  },
+  data: () => {
+    return {
+      plugins: [],
+      visible: false,
+      total: 0,
+      params: {
+        currentPage: 1,
+        pageSize: 9
       },
-      page (currentPage) {
-        this.params.currentPage = currentPage
-        this.fetchList(this.params)
+      installing: false,
+      installPlugin: {},
+      form: {
+        password: ''
       },
-      installFromPluginCenter (plugin) {
-        this.visible = true
-        this.installPlugin = plugin
-      },
-      handleOk () {
-        console.log('ok')
-
+      rules: {
+        password: [
+          {required: true, message: '提取码不能为空', trigger: 'blur'}
+        ]
       }
     }
+  },
+  created() {
+    this.fetchList(this.params)
+  },
+  methods: {
+    fetchList(params) {
+      getPluginList(params)
+        .then(res => {
+          if (fetchResult(res, false, true)) {
+            this.plugins = res.data.records
+            this.params.currentPage = res.data.current
+            this.total = res.data.total
+          }
+        })
+    },
+    page(currentPage) {
+      this.params.currentPage = currentPage
+      this.fetchList(this.params)
+    },
+    installFromPluginCenter(plugin) {
+      this.visible = true
+      this.installPlugin = plugin
+    },
+    handleOk() {
+      this.$refs.ruleForm.validate(valid => {
+        if (valid) {
+          this.installing = true
+          onlineInstall(this.installPlugin.id, this.installPlugin.pluginCode, this.form.password)
+            .then(res => {
+              this.installing = false;
+              if (fetchResult(res, true, true)) {
+                this.$refs.ruleForm.resetFields();
+                this.visible = false
+                this.installPlugin = {}
+              }
+            })
+        }
+      });
+    }
   }
+}
 </script>
 
 <style lang="less" scoped>
@@ -104,30 +129,38 @@ import { fetchResult } from '@/utils/fetchUtil'
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
   .plugin {
     margin-right: 28px;
     margin-bottom: 28px;
     width: 32%;
+
     .content {
       padding: 15px;
       display: flex;
       flex-direction: row;
+
       img {
         width: 120px;
       }
+
       .info {
         margin-left: 10px;
+
         .title {
           font-size: 15px;
           font-weight: bold;
           color: #4091f7;
         }
+
         .sharer {
           font-size: 12px;
         }
+
         .desc {
           font-size: 13px;
         }
+
         .price {
           color: #dd524d;
           font-size: 12px;
@@ -149,6 +182,7 @@ import { fetchResult } from '@/utils/fetchUtil'
 .margin-top-3 {
   margin-top: 3px;
 }
+
 .margin-top-5 {
   margin-top: 5px;
 }

@@ -1,7 +1,6 @@
 package cn.silently9527.coupons.service.operation;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.lang.UUID;
 import cn.hutool.core.util.ZipUtil;
 import com.gitee.starblues.integration.IntegrationConfiguration;
 import com.gitee.starblues.integration.application.PluginApplication;
@@ -26,27 +25,28 @@ public class PluginInstaller {
     @Resource
     private PluginApplication pluginApplication;
 
-    public void install(InputStream zipInputStream) {
+    public void install(String pluginId, InputStream zipInputStream) {
         try {
             log.info("start install plugin");
-            ZipUtil.unzip(zipInputStream, new File(integrationConfiguration.uploadTempPath()), StandardCharsets.UTF_8);
 
-            String fileName = UUID.fastUUID().toString(true);
-            log.info("generate plugin name: {}", fileName);
+            ZipUtil.unzip(zipInputStream, new File(integrationConfiguration.uploadTempPath() + File.separator + pluginId), StandardCharsets.UTF_8);
 
-            installPluginConfigFile(fileName);
-            installPluginJarFile(fileName);
-            installPluginClient(fileName);
-            //todo: 触发生成pages.json   manifest.json的事件
+            installPluginConfigFile(pluginId);
+            installPluginJarFile(pluginId);
+            installPluginClient(pluginId);
         } catch (Exception ex) {
             //todo: 清理解压后的文件
+            log.error("install plugin error", ex);
         }
     }
 
     private void installPluginClient(String fileName) {
         log.info("install plugin client file");
         File dir = new File(integrationConfiguration.uploadTempPath() + File.separator + fileName + File.separator + "client");
-        File des = new File(clientPath + File.separator + "plugins");
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        File des = new File(clientPath + File.separator + "src" + File.separator + "plugins");
         FileUtil.copy(dir, des, false);
         new File(des, "client").renameTo(new File(des, fileName));
     }
@@ -65,7 +65,7 @@ public class PluginInstaller {
 
     private void installPluginConfigFile(String fileName) throws Exception {
         log.info("install plugin config file");
-        File dir = new File(integrationConfiguration.uploadTempPath() + File.separator + fileName + File.separator + "config");
+        File dir = new File(integrationConfiguration.uploadTempPath() + File.separator + fileName);
         String[] files = dir.list((dir1, name) -> name.endsWith(".yml"));
         String configFilePath = files != null && files.length > 0 ? files[0] : null;
 

@@ -35,15 +35,17 @@ public class PluginServiceImpl implements PluginService {
 
     @Override
     public void installZip(MultipartFile zipFile) throws Exception {
-        pluginInstaller.install(zipFile.getInputStream());
+        String pluginId = Objects.requireNonNull(zipFile.getOriginalFilename())
+                .substring(0, zipFile.getOriginalFilename().lastIndexOf("."));
+        pluginInstaller.install(pluginId, zipFile.getInputStream());
     }
 
     @Override
-    public void onlineInstall(String pluginId, String password) {
+    public void onlineInstall(String pluginId, String pluginCode, String password) {
         try {
             String url = pluginCenterHost + "/api/plugins/plugin-center/mi/plugins/install/" + pluginId + "/" + password;
             ResponseEntity<byte[]> entity = restTemplate.getForEntity(url, byte[].class);
-            pluginInstaller.install(new ByteArrayInputStream(Objects.requireNonNull(entity.getBody())));
+            pluginInstaller.install(pluginCode, new ByteArrayInputStream(Objects.requireNonNull(entity.getBody())));
         } catch (HttpServerErrorException e) {
             log.error("online install fail", e);
             throw new RuntimeException(e.getMessage());
