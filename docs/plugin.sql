@@ -19,5 +19,6 @@ CREATE TABLE `plugin`
     `qrcode`        varchar(255) NOT NULL COMMENT '二维码',
     `remark`        varchar(255) NOT NULL COMMENT '引导',
     `password`      varchar(30)  NOT NULL COMMENT '提取码',
+    `rest_password`  tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态（1可以动态变化, 0不能）',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB  COMMENT = '客户端的tabBar配置';

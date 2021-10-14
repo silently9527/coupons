@@ -6,6 +6,8 @@ import cn.silently9527.coupons.plugincenter.repository.databases.mapper.PluginMa
 import cn.silently9527.coupons.plugincenter.rest.params.AddPluginParam;
 import cn.silently9527.coupons.plugincenter.rest.params.UpdatePluginParam;
 import cn.silently9527.coupons.plugincenter.service.PluginService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
@@ -52,7 +54,9 @@ public class PluginServiceImpl extends ServiceImpl<PluginMapper, Plugin> impleme
 
     @Override
     public void resetPassword() {
-        list().forEach(plugin -> {
+        QueryWrapper<Plugin> queryWrapper = Wrappers.query();
+        queryWrapper.eq("rest_password", 1);
+        list(queryWrapper).forEach(plugin -> {
             plugin.setPassword(String.valueOf((int) ((Math.random() * 9 + 1) * 100000)));
             updateById(plugin);
         });

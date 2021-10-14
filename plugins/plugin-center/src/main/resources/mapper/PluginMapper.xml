@@ -19,6 +19,7 @@
         <result column="doc_url" property="docUrl" />
         <result column="price" property="price" />
         <result column="password" property="password" />
+        <result column="rest_password" property="restPassword" />
         <result column="qrcode" property="qrcode" />
         <result column="status" property="status" />
         <result column="remark" property="remark" />
@@ -26,7 +27,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, create_user, gmt_created, modified_user, gmt_modified, plugin_name, plugin_code, icon, author, version, description, download_url, doc_url, price, password, status, qrcode, remark
+        id, create_user, gmt_created, modified_user, gmt_modified, plugin_name, plugin_code, icon, author, version, description, download_url, doc_url, price, password,rest_password, status, qrcode, remark
     </sql>
 
 </mapper>
