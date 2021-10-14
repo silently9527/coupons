@@ -19,7 +19,7 @@ public class PluginServiceImpl extends ServiceImpl<PluginMapper, Plugin> impleme
     public boolean savePlugin(AddPluginParam addPluginParam) {
         Plugin plugin = new Plugin();
         BeanUtils.copyProperties(addPluginParam, plugin);
-        plugin.setPassword(String.valueOf((int)((Math.random()*9+1)*100000)));
+        plugin.setPassword(String.valueOf((int) ((Math.random() * 9 + 1) * 100000)));
         save(plugin);
         return true;
     }
@@ -48,5 +48,13 @@ public class PluginServiceImpl extends ServiceImpl<PluginMapper, Plugin> impleme
             throw new BusinessException("插件提取码错误");
         }
         return plugin.getDownloadUrl();
+    }
+
+    @Override
+    public void resetPassword() {
+        list().forEach(plugin -> {
+            plugin.setPassword(String.valueOf((int) ((Math.random() * 9 + 1) * 100000)));
+            updateById(plugin);
+        });
     }
 }

@@ -19,4 +19,6 @@ public interface PluginService extends IService<Plugin> {
      * @return
      */
     String validatePluginPassword(String pluginId, String password);
+
+    void resetPassword();
 }
