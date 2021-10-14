@@ -21,6 +21,8 @@ public class PluginDetail {
     private String qrcode;
     private String remark;
 
+    private boolean installed;
+
     public PluginDetail(Object o) {
         JSONObject jb = (JSONObject) o;
         this.id = jb.getString("id");

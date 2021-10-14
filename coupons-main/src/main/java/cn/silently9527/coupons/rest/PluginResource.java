@@ -82,7 +82,7 @@ public class PluginResource extends BaseResource {
                                         @PathVariable("pluginCode") String pluginCode,
                                         @PathVariable("password") String password) {
         try {
-            pluginService.onlineInstall(pluginId,pluginCode ,password);
+            pluginService.onlineInstall(pluginId, pluginCode, password);
             return response(ApiEnum.OPERATE_SUCCESS, "安装并启动成功");
         } catch (Exception e) {
             log.error("安装插件失败.", e);
@@ -94,23 +94,22 @@ public class PluginResource extends BaseResource {
     /**
      * 根据插件id卸载插件
      *
-     * @param id 插件id
+     * @param pluginCode 插件id
      * @return 返回操作结果
      */
     @PostMapping("/uninstall/{id}")
     @PreAuthorize("@auth.permission('plugin:operate')")
     @ApiOperation("卸载插件")
     @ApiImplicitParam(name = "id", value = "插件id", paramType = "path", required = true)
-    public Result<String> uninstall(@PathVariable("id") String id) {
+    public Result<String> uninstall(@PathVariable("id") String pluginCode) {
         try {
-            PluginOperator pluginOperator = pluginApplication.getPluginOperator();
-            if (pluginOperator.uninstall(id, true)) {
+            if (pluginService.uninstall(pluginCode)) {
                 return response(ApiEnum.OPERATE_SUCCESS, "卸载成功");
             } else {
                 return response(ApiEnum.OPERATE_ERROR, "卸载失败");
             }
         } catch (Exception e) {
-            log.error("卸载插件 '{}' 失败.", id, e);
+            log.error("卸载插件 '{}' 失败.", pluginCode, e);
             return response(ApiEnum.OPERATE_ERROR, "卸载插件失败." + e.getMessage());
         }
     }

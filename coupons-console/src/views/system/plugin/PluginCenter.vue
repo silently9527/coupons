@@ -18,7 +18,8 @@
           </div>
         </div>
         <template slot="actions" class="ant-card-actions">
-          <span @click="installFromPluginCenter(plugin)"><a-icon type="download"/>&nbsp;&nbsp;安装</span>
+          <span v-if="!plugin.installed" @click="installFromPluginCenter(plugin)"><a-icon type="download"/>&nbsp;&nbsp;安装</span>
+          <span v-if="plugin.installed" style=""><a-icon type="download"/>&nbsp;&nbsp;已安装</span>
           <a :href="plugin.docUrl" target="_blank"><span><a-icon type="file-markdown"/>&nbsp;&nbsp;文档</span></a>
         </template>
       </a-card>
@@ -114,6 +115,7 @@ export default {
               if (fetchResult(res, true, true)) {
                 this.$refs.ruleForm.resetFields();
                 this.visible = false
+                this.installPlugin.installed=true;
                 this.installPlugin = {}
               }
             })

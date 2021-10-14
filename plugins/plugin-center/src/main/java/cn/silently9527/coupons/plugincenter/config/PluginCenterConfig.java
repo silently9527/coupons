@@ -1,5 +1,6 @@
 package cn.silently9527.coupons.plugincenter.config;
 
+import cn.hutool.core.lang.UUID;
 import cn.silently9527.coupons.core.plugin.web.MenuDefine;
 import cn.silently9527.coupons.core.plugin.web.WebViewRegister;
 import cn.silently9527.coupons.plugin.web.PluginWebInterface;
@@ -23,7 +24,7 @@ public class PluginCenterConfig implements SpringBootMybatisPlusConfig, StaticRe
     @Override
     public void config(WebViewRegister register) {
         register.setView("/index.html", "/plugin-center", "plugin-center")
-                .addMenu("plugin-list", new MenuDefine("200", MenuDefine.Type.MENU,
+                .addMenu(UUID.randomUUID().toString(true), new MenuDefine("200", MenuDefine.Type.MENU,
                         "插件中心管理", "/plugin-list").setIcon("pie-chart"));
     }
 

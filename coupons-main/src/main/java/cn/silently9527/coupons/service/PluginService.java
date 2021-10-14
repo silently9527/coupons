@@ -11,4 +11,6 @@ public interface PluginService {
     IPage<PluginDetail> centerList(PageParam param);
 
     void onlineInstall(String pluginId, String pluginCode, String password);
+
+    boolean uninstall(String pluginCode);
 }

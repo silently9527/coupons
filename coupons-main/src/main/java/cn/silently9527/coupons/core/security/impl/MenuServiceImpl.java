@@ -69,17 +69,17 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     public NavigationVo getCurrentUserNav() {
         Set<String> roleCodes = AuthUtils.getCurrentRoleCodes();
         NavigationVo navigationVo = new NavigationVo();
-        if(roleCodes.isEmpty()){
+        if (roleCodes.isEmpty()) {
             return navigationVo;
         }
         List<Menu> menus = null;
-        if(roleCodes.contains(systemProp.getSuperRoleCode())){
+        if (roleCodes.contains(systemProp.getSuperRoleCode())) {
             menus = getAllNav(false);
         } else {
             menus = baseMapper.getNavByRoleCodes(roleCodes);
         }
 
-        if(menus == null || menus.isEmpty()){
+        if (menus == null || menus.isEmpty()) {
             return navigationVo;
         }
         List<NavigationInfo> navigationInfos = Lists.newArrayList();
@@ -91,21 +91,21 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         RuntimeMode runtimeMode = RuntimeMode.byName(integrationConfiguration.getRunMode());
 
         for (Menu menu : menus) {
-            if(menu == null){
+            if (menu == null) {
                 continue;
             }
             String parentId = menu.getParentId();
             NavigationInfo navigationInfo = getNavigationVo(menu);
-            if(Objects.equals(parentId, "0")){
+            if (Objects.equals(parentId, "0")) {
                 topNavigationInfo.add(navigationInfo);
             } else {
-                if(!notTopMenus.containsKey(parentId)){
+                if (!notTopMenus.containsKey(parentId)) {
                     notTopMenus.put(parentId, menu);
                 }
             }
-            if(Objects.equals(menu.getPluginMenu(), 1)){
+            if (Objects.equals(menu.getPluginMenu(), 1)) {
                 // 插件菜单
-                if(runtimeMode == RuntimeMode.DEVELOPMENT){
+                if (runtimeMode == RuntimeMode.DEVELOPMENT) {
                     // 开发环境下不处理插件菜单信息
                     continue;
                 }
@@ -130,7 +130,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         LambdaQueryWrapper<Menu> wrapper = Wrappers.<Menu>lambdaQuery()
                 .eq(Menu::getDeleted, 0)
                 .in(Menu::getType, 1, 2);
-        if(!haveDisable){
+        if (!haveDisable) {
             wrapper.eq(Menu::getEnable, 1);
         }
         wrapper.orderByAsc(Menu::getOrderNum);
@@ -142,7 +142,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         LambdaQueryWrapper<Menu> wrapper = Wrappers.<Menu>lambdaQuery()
                 .eq(Menu::getDeleted, 0)
                 .eq(Menu::getType, 3);
-        if(!haveDisable){
+        if (!haveDisable) {
             wrapper.eq(Menu::getEnable, 1);
         }
         return list(wrapper);
@@ -151,7 +151,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public List<MenuTree> getMenuTree(Boolean havePluginMenu) {
         List<MenuTree> menus = baseMapper.getMenuTree(havePluginMenu);
-        if(menus == null || menus.isEmpty()){
+        if (menus == null || menus.isEmpty()) {
             return Collections.emptyList();
         }
         ListToTree<MenuTree> listToTree = getListToTree();
@@ -161,16 +161,16 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public List<MenuTree> getMenuTreeByCurrentUser(Boolean havePluginMenu) throws Exception {
         String currentUsername = AuthUtils.getCurrentUsername();
-        if(StrUtil.isEmpty(currentUsername)){
+        if (StrUtil.isEmpty(currentUsername)) {
             throw new BusinessException("没有发现授权的用户");
         }
         User user = userService.getByUsername(currentUsername);
-        if(Objects.equals(user.getUserId(), systemProp.getSuperAdminId())){
+        if (Objects.equals(user.getUserId(), systemProp.getSuperAdminId())) {
             // 为超级管理员
             return getMenuTree(havePluginMenu);
         }
         Set<String> roleCodes = AuthUtils.getCurrentRoleCodes();
-        if(roleCodes.isEmpty()){
+        if (roleCodes.isEmpty()) {
             return Collections.emptyList();
         }
         List<MenuTree> menuTree = super.baseMapper.getMenuTreeByRole(roleCodes, havePluginMenu);
@@ -182,13 +182,13 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Override
     public void updateStatus(String menuId, int status) {
         Set<String> menuIds = Sets.newHashSet(menuId);
-        resolveChildMenu(menuId, m->{
+        resolveChildMenu(menuId, m -> {
             menuIds.add(m.getMenuId());
         });
         Wrapper<Menu> wrapper = Wrappers.<Menu>lambdaQuery()
                 .in(Menu::getMenuId, menuIds);
         Menu menu = new Menu();
-        if(status == 1){
+        if (status == 1) {
             menu.setEnable(1);
         } else {
             menu.setEnable(0);
@@ -199,14 +199,14 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Transactional
     @Override
     public void removeMenuById(String menuId, boolean isLogicDelete) {
-        if(StrUtil.isEmpty(menuId)){
+        if (StrUtil.isEmpty(menuId)) {
             return;
         }
         Set<String> menuIds = Sets.newHashSet(menuId);
-        resolveChildMenu(menuId, m->{
+        resolveChildMenu(menuId, m -> {
             menuIds.add(m.getMenuId());
         });
-        if(isLogicDelete){
+        if (isLogicDelete) {
             Wrapper<Menu> wrapper = Wrappers.<Menu>lambdaQuery()
                     .in(Menu::getMenuId, menuIds);
             Menu m = new Menu();
@@ -228,7 +228,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     @Transactional
     @Override
     public List<Menu> getChildMenu(String menuId) {
-        if(StrUtil.isEmpty(menuId)){
+        if (StrUtil.isEmpty(menuId)) {
             return Collections.emptyList();
         }
         Wrapper<Menu> wrapper = Wrappers.<Menu>lambdaQuery()
@@ -236,13 +236,13 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         return list(wrapper);
     }
 
-    private void resolveChildMenu(String parentMenuId, Consumer<Menu> consumer){
+    private void resolveChildMenu(String parentMenuId, Consumer<Menu> consumer) {
         List<Menu> childMenu = getChildMenu(parentMenuId);
-        if(childMenu.isEmpty()){
+        if (childMenu.isEmpty()) {
             return;
         }
         for (Menu menu : childMenu) {
-            if(menu == null){
+            if (menu == null) {
                 continue;
             }
             consumer.accept(menu);
@@ -253,16 +253,16 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     @Override
     public void removeMenuByIdsOfBean(Collection<Menu> menus, boolean isLogicDelete) {
-        if(menus == null || menus.isEmpty()){
+        if (menus == null || menus.isEmpty()) {
             return;
         }
-        if(isLogicDelete){
+        if (isLogicDelete) {
             Set<String> removeMenus = menus.stream()
                     .filter(menu -> menu != null)
                     .map(menu -> {
                         return menu.getMenuId();
                     }).collect(Collectors.toSet());
-            if(removeMenus.isEmpty()){
+            if (removeMenus.isEmpty()) {
                 return;
             }
             Wrapper<Menu> wrapper = Wrappers.<Menu>lambdaQuery()
@@ -276,7 +276,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
                     .map(menu -> {
                         return menu.getMenuId();
                     }).collect(Collectors.toSet());
-            if(removeMenuIds.isEmpty()){
+            if (removeMenuIds.isEmpty()) {
                 return;
             }
             removeByIds(removeMenuIds);
@@ -289,7 +289,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
     public void addMenu(MenuAddParam param) {
         Menu add = new Menu();
         BeanUtils.copyProperties(param, add);
-        if(StrUtil.isEmpty(add.getParentId())){
+        if (StrUtil.isEmpty(add.getParentId())) {
             add.setParentId("0");
         }
         add.setDeleted(0);
@@ -300,10 +300,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     /**
      * 得到导航模型
+     *
      * @param menu 菜单
      * @return NavigationVo
      */
-    private NavigationInfo getNavigationVo(Menu menu){
+    private NavigationInfo getNavigationVo(Menu menu) {
         NavigationInfo navigationInfo = new NavigationInfo();
         navigationInfo.setId(menu.getMenuId());
         navigationInfo.setParentId(menu.getParentId());
@@ -314,7 +315,7 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         meta.setTitle(menu.getTitle());
         meta.setShow(true);
         meta.setIcon(menu.getIcon());
-        if(Objects.equals(menu.getType(), 2)){
+        if (Objects.equals(menu.getType(), 2)) {
             // 菜单
             meta.setTarget(menu.getHtmlTarget());
         }
@@ -324,16 +325,17 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     /**
      * 设置顶级菜单的跳转路径
+     *
      * @param topNavigationInfo 顶级菜单列表
-     * @param notTopMenus 非顶级菜单
+     * @param notTopMenus       非顶级菜单
      */
     private void setTopRedirect(List<NavigationInfo> topNavigationInfo, Map<String, Menu> notTopMenus) {
-        if(topNavigationInfo.isEmpty()){
+        if (topNavigationInfo.isEmpty()) {
             return;
         }
         for (NavigationInfo navigationInfo : topNavigationInfo) {
             String firstRedirect = getFirstRedirect(navigationInfo.getId(), notTopMenus);
-            if(StrUtil.isEmpty(firstRedirect)){
+            if (StrUtil.isEmpty(firstRedirect)) {
                 continue;
             }
             navigationInfo.setRedirect(firstRedirect);
@@ -342,16 +344,17 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     /**
      * 递归获取第一个菜单型的路径
+     *
      * @param menuParentId 菜单的父id
-     * @param notTopMenus 非顶级菜单
+     * @param notTopMenus  非顶级菜单
      * @return 菜单路径
      */
-    private String getFirstRedirect(String menuParentId, Map<String, Menu> notTopMenus){
+    private String getFirstRedirect(String menuParentId, Map<String, Menu> notTopMenus) {
         Menu menu = notTopMenus.get(menuParentId);
-        if(menu == null){
+        if (menu == null) {
             return null;
         }
-        if(Objects.equals(menu.getType(), 2)){
+        if (Objects.equals(menu.getType(), 2)) {
             return menu.getPath();
         } else {
             return getFirstRedirect(menu.getMenuId(), notTopMenus);
@@ -360,18 +363,19 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
 
     /**
      * 处理插件菜单
+     *
      * @param navigationInfo 导航模型
-     * @param menu 当前菜单
+     * @param menu           当前菜单
      * @param requestAddress 当前请求的地址
      */
-    private NavigationVo.PluginWebInfo processPluginMenu(NavigationInfo navigationInfo, Menu menu, String requestAddress){
+    private NavigationVo.PluginWebInfo processPluginMenu(NavigationInfo navigationInfo, Menu menu, String requestAddress) {
         navigationInfo.setPath(HttpUtils.pathJoin(menu.getPluginRootRouting(), menu.getPath()));
         navigationInfo.setComponent(PLUGIN_COMPONENT);
 
         NavigationVo.PluginWebInfo pluginWebInfo = new NavigationVo.PluginWebInfo();
         pluginWebInfo.setAppName(menu.getPluginAppName());
         String pluginAppPath = menu.getPluginAppPath();
-        if(!HttpUtils.isHttpUrl(pluginAppPath)){
+        if (!HttpUtils.isHttpUrl(pluginAppPath)) {
             pluginAppPath = requestAddress + HttpUtils.pathJoin(PluginConfig.STATIC_RESOURCE_PATH_PREFIX,
                     pluginAppPath);
         }
@@ -380,8 +384,8 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         return pluginWebInfo;
     }
 
-    public static ListToTree<MenuTree> getListToTree(){
-        return new ListToTree<MenuTree>(){
+    public static ListToTree<MenuTree> getListToTree() {
+        return new ListToTree<MenuTree>() {
 
             @Override
             protected String getKey(MenuTree node) {
