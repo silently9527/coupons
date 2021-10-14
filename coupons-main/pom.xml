@@ -125,6 +125,8 @@
             <groupId>com.gitee.starblues</groupId>
             <artifactId>springboot-plugin-framework</artifactId>
             <version>${springboot-plugin-framework.version}</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/springboot-plugin-framework-2.4.1-RELEASE.jar</systemPath>
         </dependency>
 
         <dependency>
