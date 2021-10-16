@@ -1,7 +1,8 @@
 <template>
   <div :class="wrpCls" style="margin-right: 24px">
-    <avatar-dropdown :menu="showMenu" :current-user="currentUser" :class="prefixCls" />
-<!--    <select-lang :class="prefixCls" />-->
+<!--    <a href="http://silently9527.cn" target="_blank" style="color:orangered;margin-right:50px;">新版本5.2.3已发布!</a>-->
+    <avatar-dropdown :menu="showMenu" :current-user="currentUser" :class="prefixCls"/>
+    <!--    <select-lang :class="prefixCls" />-->
   </div>
 </template>
 
@@ -33,25 +34,25 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       showMenu: true,
       currentUser: {}
     }
   },
   computed: {
-    wrpCls () {
+    wrpCls() {
       return {
         'ant-pro-global-header-index-right': true,
         [`ant-pro-global-header-index-${(this.isMobile || !this.topMenu) ? 'light' : this.theme}`]: true
       }
     }
   },
-  mounted () {
+  mounted() {
     this.currentUser = this.userInfo()
   },
   methods: {
-    userInfo () {
+    userInfo() {
       return this.$store.getters.userInfo
     }
   }
