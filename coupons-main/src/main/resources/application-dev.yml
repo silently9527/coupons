@@ -47,6 +47,8 @@ system:
   jwtSigningKey: defaultSigningKey
   # 不需要授权的接口地址匹配
   noAuthPathPatterns:
+  filePathProp:
+    userAvatarPath: build/user-avatar
 
 # 插件的配置
 plugin:

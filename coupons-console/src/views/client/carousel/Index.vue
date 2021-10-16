@@ -2,20 +2,12 @@
   <page-header-wrapper>
     <a-card :bordered="false">
       <div class="table-operator">
-        <a-form-model layout="inline" :model="searchFrom" @submit="fetchList" @submit.native.prevent>
+        <a-form-model ref="searchFromRef" layout="inline">
           <a-form-model-item>
-            <a-input style="width: 300px" v-model="searchFrom.path" placeholder="页面路径"/>
-          </a-form-model-item>
-          <a-form-model-item>
-            <a-button type="primary" html-type="submit">查询</a-button>
-          </a-form-model-item>
-          <a-form-model-item>
-            <a-button type="primary" @click="showMode('add')">新增Route</a-button>
-          </a-form-model-item>
-          <a-form-model-item>
-            <a-tag color="red">新增或修改Route需要重新打包客户端！</a-tag>
+            <a-button type="primary" @click="showMode('add')">新增</a-button>
           </a-form-model-item>
         </a-form-model>
+
       </div>
       <div class="table-page-search-wrapper">
         <a-table
@@ -27,7 +19,6 @@
           :loading="loading"
           @change="handleTableChange"
           size="small"
-          :transformCellText="transformCellText"
         >
           <span slot="status" slot-scope="status">
             <a-tag color="cyan" v-if="status === 1">启用</a-tag>
@@ -65,29 +56,46 @@
 </template>
 
 <script>
-import EditModel from '@/views/client/route/EditModel'
-import {getPageList, updateStatus, deleteById} from '@/api/route'
+import EditModel from '@/views/client/carousel/EditModel'
+import {getPageList, updateStatus, deleteById} from '@/api/carousel'
 import {fetchResult} from '@/utils/fetchUtil'
-import {transformCellText} from '@/utils/tableUtils'
 
 const pageSize = 10
 
 const columns = [
   {
-    title: '页面路径',
-    dataIndex: 'path',
-    width: '40%'
+    title: '标题',
+    dataIndex: 'title',
   },
   {
-    title: '样式',
-    dataIndex: 'style',
-    width: '30%'
+    title: '图片',
+    dataIndex: 'image'
+  },
+  {
+    title: 'URL',
+    dataIndex: 'url'
+  },
+  {
+    title: 'URL类型',
+    dataIndex: 'urlType'
   },
   {
     title: '状态',
     dataIndex: 'status',
     scopedSlots: {customRender: 'status'},
+    width: 120
+  },
+  {
+    title: '排序',
+    dataIndex: 'sorted',
+    scopedSlots: {customRender: 'locked'},
     width: 80
+  },
+  {
+    title: '创建时间',
+    dataIndex: 'gmtCreated',
+    ellipsis: true,
+    width: 180
   },
   {
     title: '操作',
@@ -97,14 +105,13 @@ const columns = [
   }
 ]
 export default {
-  name: 'RouteManage',
+  name: 'CarouselManage',
   components: {
     EditModel
   },
   data() {
     return {
       loading: false,
-      transformCellText: transformCellText,
       // 表头
       columns: columns,
       // 加载数据方法 必须为 Promise 对象
@@ -113,9 +120,6 @@ export default {
         current: 1,
         pageSize: pageSize,
         showQuickJumper: true
-      },
-      searchFrom: {
-        path: ''
       },
       model: {
         visible: false,
@@ -130,7 +134,6 @@ export default {
   },
   methods: {
     fetchList(params = {}) {
-      params = { ...this.searchFrom }
       params.pageSize = pageSize
       params.currentPage = this.pagination.current
       this.loading = true
@@ -154,7 +157,7 @@ export default {
       const tag = this
       this.$confirm({
         title: '提示',
-        content: `确认${message}该Route?`,
+        content: `确认${message}该轮播图?`,
         confirmLoading: true,
         okText: '确认',
         cancelText: '取消',
@@ -177,7 +180,7 @@ export default {
       const tag = this
       this.$confirm({
         title: '提示',
-        content: `确认删除该Route?`,
+        content: `确认删除该轮播图?`,
         confirmLoading: true,
         okText: '确认',
         cancelText: '取消',

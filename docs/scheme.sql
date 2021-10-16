@@ -274,7 +274,50 @@ CREATE TABLE `route`
     `user_id`       varchar(32) NOT NULL COMMENT '用户id',
     `path`          varchar(255)  DEFAULT NULL COMMENT '路径',
     `style`         varchar(5000) DEFAULT NULL COMMENT 'style',
-    `status`             tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态（1启用, 0停用）',
+    `status`        tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态（1启用, 0停用）',
     PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB  COMMENT = '客户端的Route配置';
+
+
+
+DROP TABLE IF EXISTS `carousel`;
+CREATE TABLE `carousel`
+(
+    `id`            varchar(32) NOT NULL COMMENT 'id',
+    `create_user`   varchar(32) NOT NULL COMMENT '创建用户',
+    `gmt_created`   varchar(32) NOT NULL COMMENT '创建时间',
+    `modified_user` varchar(32) NOT NULL COMMENT '修改用户',
+    `gmt_modified`  varchar(32) NOT NULL COMMENT '修改时间',
+    `user_id`       varchar(32) NOT NULL COMMENT '用户id',
+    `title`         varchar(255)  DEFAULT NULL COMMENT '标题',
+    `image`         varchar(500)  DEFAULT NULL COMMENT 'image地址',
+    `url`           varchar(1000) DEFAULT NULL COMMENT 'url',
+    `url_type`      varchar(30)   DEFAULT NULL COMMENT 'URL类型',
+    `status`        tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态（1启用, 0停用）',
+    `sorted`        tinyint(4) NOT NULL DEFAULT 1 COMMENT '排序¬',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB  COMMENT = '轮播图';
+
+
+DROP TABLE IF EXISTS `buttons`;
+CREATE TABLE `buttons`
+(
+    `id`            varchar(32) NOT NULL COMMENT 'id',
+    `create_user`   varchar(32) NOT NULL COMMENT '创建用户',
+    `gmt_created`   varchar(32) NOT NULL COMMENT '创建时间',
+    `modified_user` varchar(32) NOT NULL COMMENT '修改用户',
+    `gmt_modified`  varchar(32) NOT NULL COMMENT '修改时间',
+    `user_id`       varchar(32) NOT NULL COMMENT '用户id',
+    `page`          varchar(50)   DEFAULT NULL COMMENT '所属的页面名字',
+    `button_code`   varchar(30)   DEFAULT NULL COMMENT '编码',
+    `text`          varchar(30)   DEFAULT NULL COMMENT '按钮文字',
+    `iconType`      varchar(20)   DEFAULT NULL COMMENT '图标的类型：image、icon',
+    `image`         varchar(1000) DEFAULT NULL COMMENT 'image',
+    `url`           varchar(1000) DEFAULT NULL COMMENT 'url',
+    `url_type`      varchar(30)   DEFAULT NULL COMMENT 'URL类型',
+    `status`        tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态（1启用, 0停用）',
+    `sorted`        tinyint(4) NOT NULL DEFAULT 1 COMMENT '排序',
+    `remark`        varchar(255)  DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB  COMMENT = '页面的动态按钮管理';
 

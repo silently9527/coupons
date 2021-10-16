@@ -45,8 +45,9 @@ const constantRouterComponents = {
   'TabBarManage': () => import('@/views/client/tabbar/Index'),
   'CoreConfigManage': () => import('@/views/system/config/Index'),
   'RouteManage': () => import('@/views/client/route/Index'),
-  'VersionManage': () => import('@/views/client/version/Index'),
-  'CodeManage': () => import('@/views/client/code/Index')
+  'CodeManage': () => import('@/views/client/code/Index'),
+  'CarouselManage': () => import('@/views/client/carousel/Index'),
+  'ButtonsManage': () => import('@/views/client/buttons/Index')
 
 }
 
@@ -60,7 +61,7 @@ const rootRouter = {
   name: 'index',
   path: '',
   component: 'BasicLayout',
-  redirect: '/system',
+  redirect: '/client',
   meta: {
     title: '首页'
   },

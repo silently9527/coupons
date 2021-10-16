@@ -1,19 +1,15 @@
 package cn.silently9527.coupons.rest;
 
 
+import cn.silently9527.coupons.repository.databases.entity.Buttons;
 import cn.silently9527.coupons.repository.databases.entity.Route;
-import cn.silently9527.coupons.repository.databases.entity.TabBar;
 import cn.silently9527.coupons.rest.common.BaseResource;
 import cn.silently9527.coupons.rest.common.Result;
 import cn.silently9527.coupons.rest.common.enums.ApiEnum;
-import cn.silently9527.coupons.rest.model.param.route.RouteAddParam;
-import cn.silently9527.coupons.rest.model.param.route.RoutePageParam;
-import cn.silently9527.coupons.rest.model.param.route.RouteUpdateParam;
-import cn.silently9527.coupons.rest.model.param.tabbar.TabBarAddParam;
-import cn.silently9527.coupons.rest.model.param.tabbar.TabBarPageParam;
-import cn.silently9527.coupons.rest.model.param.tabbar.TabBarUpdateParam;
-import cn.silently9527.coupons.service.RouteService;
-import cn.silently9527.coupons.service.TabBarService;
+import cn.silently9527.coupons.rest.model.param.buttons.ButtonsAddParam;
+import cn.silently9527.coupons.rest.model.param.buttons.ButtonsPageParam;
+import cn.silently9527.coupons.rest.model.param.buttons.ButtonsUpdateParam;
+import cn.silently9527.coupons.service.ButtonsService;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -27,15 +23,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+
 import java.util.Objects;
 
 import static cn.silently9527.coupons.rest.common.Result.*;
-import static cn.silently9527.coupons.rest.common.Result.failure;
 import static cn.silently9527.coupons.rest.common.ResultUtils.errorLog;
 
 /**
  * <p>
- * 客户端的Route配置 前端控制器
+ * 页面的动态按钮管理 前端控制器
  * </p>
  *
  * @author silently9527
@@ -43,62 +39,62 @@ import static cn.silently9527.coupons.rest.common.ResultUtils.errorLog;
  */
 @Slf4j
 @RestController
-@RequestMapping(BaseResource.API + "route")
-@Api(tags = "Route接口")
+@RequestMapping(BaseResource.API + "buttons")
+@Api(tags = "Button接口")
 @AllArgsConstructor
-public class RouteResource {
-    private RouteService routeService;
+public class ButtonsResource {
+    private ButtonsService buttonsService;
 
     @GetMapping()
     @ApiOperation("分页查询")
-    public Result<IPage<Route>> pageQuery(@Valid RoutePageParam param) {
-        LambdaQueryWrapper<Route> wrapper = Wrappers.lambdaQuery();
-        if (Objects.nonNull(param.getRouteId())) {
-            wrapper.eq(Route::getId, param.getRouteId());
+    public Result<IPage<Buttons>> pageQuery(@Valid ButtonsPageParam param) {
+        LambdaQueryWrapper<Buttons> wrapper = Wrappers.lambdaQuery();
+        if (Objects.nonNull(param.getPage())) {
+            wrapper.like(Buttons::getPage, param.getPage());
         }
-        if (Objects.nonNull(param.getPath())) {
-            wrapper.like(Route::getPath, param.getPath());
+        if (Objects.nonNull(param.getButtonCode())) {
+            wrapper.like(Buttons::getButtonCode, param.getButtonCode());
         }
-        Page<Route> page = new Page<>(param.getCurrentPage(), param.getPageSize());
-        page = routeService.page(page, wrapper);
+        Page<Buttons> page = new Page<>(param.getCurrentPage(), param.getPageSize());
+        page = buttonsService.page(page, wrapper);
         return success(ApiEnum.GET_SUCCESS, page);
     }
 
     @PostMapping
-    @ApiOperation("添加Tab")
-    public Result<String> add(@RequestBody @Valid RouteAddParam param) {
+    @ApiOperation("添加Buttons")
+    public Result<String> add(@RequestBody @Valid ButtonsAddParam param) {
         try {
-            routeService.addRoute(param);
+            buttonsService.addButtons(param);
             return success(ApiEnum.ADD_SUCCESS, "添加成功");
         } catch (Exception e) {
-            errorLog(log, e, "添加 '{}' 信息失败 {}", param.getPath(), e.getMessage());
+            errorLog(log, e, "添加 '{}' 信息失败 {}", param.getButtonCode(), e.getMessage());
             return failure(ApiEnum.ADD_ERROR, "添加失败.", e);
         }
     }
 
     @PutMapping
-    @ApiOperation("修改Tab")
-    public Result<String> update(@RequestBody @Valid RouteUpdateParam param) {
+    @ApiOperation("修改Buttons")
+    public Result<String> update(@RequestBody @Valid ButtonsUpdateParam param) {
         try {
-            routeService.updateRoute(param);
+            buttonsService.updateButtons(param);
             return success(ApiEnum.ADD_SUCCESS, "修改成功");
         } catch (Exception e) {
-            errorLog(log, e, "修改 '{}' 信息失败 {}", param.getPath(), e.getMessage());
+            errorLog(log, e, "修改 '{}' 信息失败 {}", param.getButtonCode(), e.getMessage());
             return failure(ApiEnum.ADD_ERROR, "修改失败.", e);
         }
     }
 
-    @PutMapping("{routeId}/{status}")
-    @ApiOperation("修改carousel状态")
+    @PutMapping("{buttonsId}/{status}")
+    @ApiOperation("修改Buttons状态")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "routeId", value = "routeId", paramType = "path", required = true),
+            @ApiImplicitParam(name = "buttonsId", value = "buttonsId", paramType = "path", required = true),
             @ApiImplicitParam(name = "status", value = "状态（1启用, 0停用）", paramType = "path", required = true)
     })
-    public Result<String> updateStatus(@PathVariable("routeId") String routeId,
+    public Result<String> updateStatus(@PathVariable("buttonsId") String buttonsId,
                                        @PathVariable("status") Integer status) {
         String message = status == 1 ? "启用" : "禁用";
         try {
-            routeService.updateStatus(routeId, status);
+            buttonsService.updateStatus(buttonsId, status);
             return response(ApiEnum.UPDATE_SUCCESS, message + "成功");
         } catch (Exception e) {
             errorLog(log, e, "修改状态失败. {}", e.getMessage());
@@ -107,18 +103,17 @@ public class RouteResource {
     }
 
 
-    @DeleteMapping("/{routeId}")
-    @ApiOperation("删除Route")
-    @ApiImplicitParam(name = "routeId", value = "routeId", paramType = "path", required = true)
-    public Result<String> delete(@PathVariable("routeId") String routeId) {
+    @DeleteMapping("/{buttonsId}")
+    @ApiOperation("删除Buttons")
+    @ApiImplicitParam(name = "buttonsId", value = "buttonsId", paramType = "path", required = true)
+    public Result<String> delete(@PathVariable("buttonsId") String buttonsId) {
         try {
-            routeService.removeById(routeId);
+            buttonsService.removeById(buttonsId);
             return response(ApiEnum.DELETE_SUCCESS);
         } catch (Exception e) {
             errorLog(log, e, "删除失败. {}", e.getMessage());
             return failure(ApiEnum.DELETE_ERROR, "删除失败", e);
         }
     }
-
 }
 

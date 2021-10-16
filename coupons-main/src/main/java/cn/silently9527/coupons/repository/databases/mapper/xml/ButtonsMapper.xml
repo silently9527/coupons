@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silently9527.coupons.repository.databases.mapper.ButtonsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.silently9527.coupons.repository.databases.entity.Buttons">
+        <id column="id" property="id" />
+        <result column="create_user" property="createUser" />
+        <result column="gmt_created" property="gmtCreated" />
+        <result column="modified_user" property="modifiedUser" />
+        <result column="gmt_modified" property="gmtModified" />
+        <result column="user_id" property="userId" />
+        <result column="page" property="page" />
+        <result column="button_code" property="buttonCode" />
+        <result column="text" property="text" />
+        <result column="icon_type" property="iconType" />
+        <result column="image" property="image" />
+        <result column="url" property="url" />
+        <result column="url_type" property="urlType" />
+        <result column="status" property="status" />
+        <result column="sorted" property="sorted" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, create_user, gmt_created, modified_user, gmt_modified, user_id, page, button_code, text, icon_type, url, image, url_type, status, sorted, remark
+    </sql>
+
+</mapper>

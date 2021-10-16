@@ -31,7 +31,7 @@
           <a-input v-model="form.selectedIconPath" />
         </a-form-model-item>
         <a-form-model-item label="Tab排序" prop="sorted">
-          <a-input v-model="form.sorted" />
+          <a-input-number v-model="form.sorted" />
         </a-form-model-item>
         <a-form-model-item label="备注" prop="remark">
           <a-input v-model="form.remark" />

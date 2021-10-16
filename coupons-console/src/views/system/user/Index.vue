@@ -58,7 +58,7 @@
           :pagination="pagination"
           :loading="loading"
           @change="handleTableChange"
-          size="middle"
+          size="small"
           :transformCellText="transformCellText"
         >
           <p slot="expandedRowRender" slot-scope="record" style="margin: 0">

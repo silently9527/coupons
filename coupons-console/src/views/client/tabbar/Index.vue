@@ -17,12 +17,12 @@
         <a-table
           bordered
           :columns="columns"
-          :row-key="record => record.userId"
+          :row-key="record => record.id"
           :data-source="data"
           :pagination="pagination"
           :loading="loading"
           @change="handleTableChange"
-          size="middle"
+          size="small"
           :transformCellText="transformCellText"
         >
           <span slot="status" slot-scope="status">
@@ -233,16 +233,6 @@
       },
       modelHandleCancel () {
         this.model.visible = false
-      },
-      resetPasswordModelOpen (record) {
-        this.resetPasswordMode = {
-          visible: true,
-          userId: record.userId,
-          userName: record.name
-        }
-      },
-      resetPasswordModelClose () {
-        this.resetPasswordMode.visible = false
       }
     }
   }

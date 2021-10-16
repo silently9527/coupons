@@ -9,7 +9,7 @@
       :row-key="record => record.pluginDescriptor.pluginId"
       :data-source="data"
       :loading="loading"
-      size="middle"
+      size="small"
     >
       <span slot="pluginState" slot-scope="pluginState">
             <a-tag color="cyan" v-if="pluginState === 'CREATED'">创建</a-tag>

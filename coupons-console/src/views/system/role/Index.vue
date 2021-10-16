@@ -46,7 +46,7 @@
           :loading="loading"
           @change="handleTableChange"
           :transformCellText="transformCellText"
-          size="middle"
+          size="small"
         >
           <span slot="status" slot-scope="status">
             <a-tag color="cyan" v-if="status === 1">启用</a-tag>

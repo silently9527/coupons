@@ -12,7 +12,7 @@
           :row-key="record => record.menuId"
           :loading="loading"
           :rowSelection="rowSelection"
-          size="middle"
+          size="small"
         >
           <span slot="type" slot-scope="type">
             <a-tag color="#108ee9" v-if="type === 1">目录</a-tag>

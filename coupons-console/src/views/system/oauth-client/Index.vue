@@ -30,7 +30,7 @@
           :loading="loading"
           @change="handleTableChange"
           :transformCellText="transformCellText"
-          size="middle"
+          size="small"
         >
           <span slot="authorizedGrantTypes" slot-scope="authorizedGrantTypes">
             <a-tag color="cyan" v-if="authorizedGrantTypes.indexOf('authorization_code')>-1">

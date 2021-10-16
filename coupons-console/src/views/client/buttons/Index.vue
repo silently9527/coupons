@@ -4,16 +4,16 @@
       <div class="table-operator">
         <a-form-model layout="inline" :model="searchFrom" @submit="fetchList" @submit.native.prevent>
           <a-form-model-item>
-            <a-input style="width: 300px" v-model="searchFrom.path" placeholder="页面路径"/>
+            <a-input style="width: 200px" v-model="searchFrom.page" placeholder="所属页面名"/>
+          </a-form-model-item>
+          <a-form-model-item>
+            <a-input style="width: 200px" v-model="searchFrom.buttonCode" placeholder="按钮编码"/>
           </a-form-model-item>
           <a-form-model-item>
             <a-button type="primary" html-type="submit">查询</a-button>
           </a-form-model-item>
           <a-form-model-item>
-            <a-button type="primary" @click="showMode('add')">新增Route</a-button>
-          </a-form-model-item>
-          <a-form-model-item>
-            <a-tag color="red">新增或修改Route需要重新打包客户端！</a-tag>
+            <a-button type="primary" @click="showMode('add')">新增Button</a-button>
           </a-form-model-item>
         </a-form-model>
       </div>
@@ -65,8 +65,8 @@
 </template>
 
 <script>
-import EditModel from '@/views/client/route/EditModel'
-import {getPageList, updateStatus, deleteById} from '@/api/route'
+import EditModel from '@/views/client/buttons/EditModel'
+import {getPageList, updateStatus, deleteById} from '@/api/buttons'
 import {fetchResult} from '@/utils/fetchUtil'
 import {transformCellText} from '@/utils/tableUtils'
 
@@ -74,20 +74,48 @@ const pageSize = 10
 
 const columns = [
   {
-    title: '页面路径',
-    dataIndex: 'path',
-    width: '40%'
+    title: '所属页面编码',
+    dataIndex: 'page'
   },
   {
-    title: '样式',
-    dataIndex: 'style',
-    width: '30%'
+    title: '按钮编码',
+    dataIndex: 'buttonCode'
+  },
+  {
+    title: '按钮文字',
+    dataIndex: 'text'
+  },
+  {
+    title: '图标的类型',
+    dataIndex: 'iconType'
+  },
+  {
+    title: '图标地址',
+    dataIndex: 'image'
+  },
+  {
+    title: 'URL类型',
+    dataIndex: 'urlType'
+  },
+  {
+    title: '按钮跳转地址',
+    dataIndex: 'url'
+  },
+  {
+    title: '排序',
+    dataIndex: 'sorted',
+    width: 80
   },
   {
     title: '状态',
     dataIndex: 'status',
     scopedSlots: {customRender: 'status'},
     width: 80
+  },
+  {
+    title: '备注',
+    dataIndex: 'remark',
+    ellipsis: true
   },
   {
     title: '操作',
@@ -154,7 +182,7 @@ export default {
       const tag = this
       this.$confirm({
         title: '提示',
-        content: `确认${message}该Route?`,
+        content: `确认${message}该button?`,
         confirmLoading: true,
         okText: '确认',
         cancelText: '取消',

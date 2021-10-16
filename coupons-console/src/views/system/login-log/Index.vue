@@ -40,7 +40,7 @@
           :loading="loading"
           @change="handleTableChange"
           :transformCellText="transformCellText"
-          size="middle"
+          size="small"
         >
           <span slot="loginResult" slot-scope="loginResult">
             <a-tag color="cyan" v-if="loginResult === 1">成功</a-tag>
