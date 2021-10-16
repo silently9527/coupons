@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    :title="opType==='add'? '新增TabBar' : '修改TabBar'"
+    :title="opType==='add'? '新增Route' : '修改Route'"
     :maskClosable="false"
     :width="640"
     :confirmLoading="confirmLoading"
@@ -18,23 +18,11 @@
         :label-col="formLayout.labelCol"
         :wrapper-col="formLayout.wrapperCol"
       >
-        <a-form-model-item label="Tab名称" prop="text">
-          <a-input v-model="form.text" />
+        <a-form-model-item label="页面路径" prop="path">
+          <a-input v-model="form.path" />
         </a-form-model-item>
-        <a-form-model-item label="页面路径" prop="pagePath">
-          <a-input v-model="form.pagePath" />
-        </a-form-model-item>
-        <a-form-model-item label="Tab图标" prop="iconPath">
-          <a-input v-model="form.iconPath" />
-        </a-form-model-item>
-        <a-form-model-item label="选中时Tab图标" prop="selectedIconPath">
-          <a-input v-model="form.selectedIconPath" />
-        </a-form-model-item>
-        <a-form-model-item label="Tab排序" prop="sorted">
-          <a-input v-model="form.sorted" />
-        </a-form-model-item>
-        <a-form-model-item label="备注" prop="remark">
-          <a-input v-model="form.remark" />
+        <a-form-model-item label="样式" prop="style">
+          <a-input v-model="form.style" type="textarea" style="height: 150px" />
         </a-form-model-item>
       </a-form-model>
     </a-spin>
@@ -44,7 +32,7 @@
 <script>
   import { FormModel } from 'ant-design-vue'
   import { fetchResult } from '@/utils/fetchUtil'
-  import { add, update } from '@/api/tabbar'
+  import { add, update } from '@/api/route'
 
   export default {
     name: 'EditModel',
@@ -78,7 +66,7 @@
       return {
         formLayout: {
           labelCol: {
-            span: 7
+            span: 6
           },
           wrapperCol: {
             span: 14
@@ -87,34 +75,12 @@
         confirmLoading: false,
         form: {},
         rules: {
-          pagePath: [
+          path: [
             { required: true, message: '页面路径不能为空', trigger: 'blur' },
             { max: 200, message: '最大长度200字符', trigger: 'blur' }
           ],
-          iconPath: [
-            { required: true, message: '图标不能为空', trigger: 'blur' },
-            { max: 200, message: '最大长度200字符', trigger: 'blur' }
-          ],
-          selectedIconPath: [
-            { required: true, message: '选中图标不能为空', trigger: 'blur' },
-            { max: 200, message: '最大长度200字符', trigger: 'blur' }
-          ],
-          sorted: [
-            {
-              trigger: 'blur',
-              required: true,
-              validator: function (rule, value, callback) {
-                if (!value) {
-                  callback(new Error('排序不能为空'))
-                  return
-                }
-                if (value <= 0 || value > 99) {
-                  callback(new Error('排序取值范围0～99'))
-                  return
-                }
-                callback()
-              }
-            }
+          style: [
+            { max: 2000, message: '最大长度2000字符', trigger: 'blur' }
           ]
         }
       }

@@ -260,5 +260,21 @@ CREATE TABLE `config`
     `modified_user` varchar(32) NOT NULL COMMENT '修改用户',
     `gmt_modified`  varchar(32) NOT NULL COMMENT '修改时间',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB  COMMENT = '客户端的tabBar配置';
+) ENGINE = InnoDB  COMMENT = '项目核心配置';
+
+
+DROP TABLE IF EXISTS `route`;
+CREATE TABLE `route`
+(
+    `id`            varchar(32) NOT NULL COMMENT 'id',
+    `create_user`   varchar(32) NOT NULL COMMENT '创建用户',
+    `gmt_created`   varchar(32) NOT NULL COMMENT '创建时间',
+    `modified_user` varchar(32) NOT NULL COMMENT '修改用户',
+    `gmt_modified`  varchar(32) NOT NULL COMMENT '修改时间',
+    `user_id`       varchar(32) NOT NULL COMMENT '用户id',
+    `path`          varchar(255)  DEFAULT NULL COMMENT '路径',
+    `style`         varchar(5000) DEFAULT NULL COMMENT 'style',
+    `status`             tinyint(4) NOT NULL DEFAULT 1 COMMENT '状态（1启用, 0停用）',
+    PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB  COMMENT = '客户端的Route配置';
 

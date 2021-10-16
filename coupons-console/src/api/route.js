@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 const api = {
-  commonApi: '/tabbar'
+  commonApi: '/route'
 }
 
 export default api

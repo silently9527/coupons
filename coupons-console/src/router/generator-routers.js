@@ -1,9 +1,9 @@
 // eslint-disable-next-line
 import * as loginService from '@/api/login'
 // eslint-disable-next-line
-import { BasicLayout, BlankLayout, PageView, RouteView } from '@/layouts'
-import { registerPluginApp, genDevMenu } from '@/config/plugin/registerPluginApp'
-import { account } from './account-routers'
+import {BasicLayout, BlankLayout, PageView, RouteView} from '@/layouts'
+import {registerPluginApp, genDevMenu} from '@/config/plugin/registerPluginApp'
+import {account} from './account-routers'
 
 // 前端路由表
 const constantRouterComponents = {
@@ -44,6 +44,8 @@ const constantRouterComponents = {
 
   'TabBarManage': () => import('@/views/client/tabbar/Index'),
   'CoreConfigManage': () => import('@/views/system/config/Index'),
+  'RouteManage': () => import('@/views/client/route/Index'),
+  'VersionManage': () => import('@/views/client/version/Index'),
   'CodeManage': () => import('@/views/client/code/Index')
 
 }
@@ -112,7 +114,7 @@ export const generatorDynamicRouter = (response) => {
  */
 export const generator = (routerMap, parent) => {
   return routerMap.map(item => {
-    const { title, show, hideChildren, hiddenHeaderContent, target, icon, pluginWebUrl } = item.meta || {}
+    const {title, show, hideChildren, hiddenHeaderContent, target, icon, pluginWebUrl} = item.meta || {}
     const currentRouter = {
       // 如果路由设置了 path，则作为默认 path，否则 路由地址 动态拼接生成如 /dashboard/workplace
       path: item.path || `${parent && parent.path || ''}/${item.key}`,

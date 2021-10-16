@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.silently9527.coupons.repository.databases.mapper.RouteMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.silently9527.coupons.repository.databases.entity.Route">
+        <id column="id" property="id" />
+        <result column="create_user" property="createUser" />
+        <result column="gmt_created" property="gmtCreated" />
+        <result column="modified_user" property="modifiedUser" />
+        <result column="gmt_modified" property="gmtModified" />
+        <result column="user_id" property="userId" />
+        <result column="path" property="path" />
+        <result column="style" property="style" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, create_user, gmt_created, modified_user, gmt_modified, user_id, `path`, `style`, status
+    </sql>
+
+</mapper>

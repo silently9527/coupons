@@ -2,13 +2,14 @@ import axios from 'axios'
 import store from '@/store'
 import qs from 'qs'
 import notification from 'ant-design-vue/es/notification'
-import { VueAxios } from './axios'
+import {VueAxios} from './axios'
 import config from '@/utils/config'
 
 const CONTENT_TYPE = {
   json: 'application/json;charset=utf-8',
   form: 'application/x-www-form-urlencoded;charset=utf-8',
-  file: 'multipart/form-data;charset=utf-8'
+  file: 'multipart/form-data;charset=utf-8',
+  blob: 'application/json; application/octet-stream'
 }
 
 // 创建 axios 实例
@@ -18,6 +19,8 @@ const request = function (requestDataType, useBaseUrl, isGetOriginalData = false
     headerContentType = CONTENT_TYPE.json
   } else if (requestDataType === 'file') {
     headerContentType = CONTENT_TYPE.file
+  }  else if (requestDataType === 'blob') {
+    headerContentType = CONTENT_TYPE.blob
   } else {
     headerContentType = CONTENT_TYPE.form
   }
@@ -41,6 +44,9 @@ const request = function (requestDataType, useBaseUrl, isGetOriginalData = false
       return qs.stringify(data)
     }
   }]
+  if (requestDataType === 'blob') {
+    params.responseType = 'blob'
+  }
   const request = axios.create(params)
   setRequestInterceptors(request)
   setResponseInterceptors(request, isGetOriginalData)
@@ -56,7 +62,7 @@ const errorHandler = (error) => {
     // 从 localstorage 获取 token
     message = data.message ? data.message : '授权失败'
     notification.error({
-      message: '授权失败',
+      message: '提示',
       description: message
     })
   } else {
@@ -70,7 +76,7 @@ const errorHandler = (error) => {
 }
 
 // request interceptor
-function setRequestInterceptors (request) {
+function setRequestInterceptors(request) {
   request.interceptors.request.use(config => {
     const token = store.getters.token
     // 如果 token 存在
@@ -83,7 +89,7 @@ function setRequestInterceptors (request) {
 }
 
 // response interceptor
-function setResponseInterceptors (request, isGetOriginalData) {
+function setResponseInterceptors(request, isGetOriginalData) {
   request.interceptors.response.use((response) => {
     if (response.status === 200) {
       if (isGetOriginalData) {
@@ -97,7 +103,7 @@ function setResponseInterceptors (request, isGetOriginalData) {
 
 const installer = {
   vm: {},
-  install (Vue) {
+  install(Vue) {
     Vue.use(VueAxios, request)
   }
 }

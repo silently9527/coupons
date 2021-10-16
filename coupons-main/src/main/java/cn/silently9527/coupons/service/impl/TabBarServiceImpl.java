@@ -39,8 +39,6 @@ public class TabBarServiceImpl extends ServiceImpl<TabBarMapper, TabBar> impleme
         tabBar.setUserId(authUserInfo.getUserId());
 
         save(tabBar);
-
-        //todo: 触发重新生成pages.json
     }
 
     @Override
@@ -52,8 +50,6 @@ public class TabBarServiceImpl extends ServiceImpl<TabBarMapper, TabBar> impleme
         tabBar.setUserId(authUserInfo.getUserId());
 
         updateById(tabBar);
-
-        //todo: 触发重新生成pages.json
     }
 
     @Override
@@ -62,8 +58,6 @@ public class TabBarServiceImpl extends ServiceImpl<TabBarMapper, TabBar> impleme
         TabBar tabBar = new TabBar();
         tabBar.setStatus(status);
         update(tabBar, wrapper);
-
-        //todo: 触发重新生成pages.json
     }
 
 }
