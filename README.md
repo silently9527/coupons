@@ -10,12 +10,6 @@
 
 # coupons文档完善中...
 
-### 博客地址: [https://herman7z.site](https://herman7z.site)
-### 个人微信: silently9527
-### 知识星球: [Herman's Notes](https://t.zsxq.com/h2EIR)
-![](https://raw.githubusercontent.com/silently9527/images/main/202408151725390.png)
-
-
 ## 项目介绍
 coupons是一个从前端到后端完全开源的淘宝客项目，目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点；理论上其他小程序支持，可能需要微调
 
@@ -142,6 +136,12 @@ coupons
 * [Java程序员自我学习的书单](https://github.com/silently9527/ProgrammerBooks)
 * [技术文章以及代码收录仓库](https://github.com/silently9527/ProgrammerNotes)
 * [高颜值可定制化的简介导航网站](http://nav.silently9527.cn/)
+
+
+### 博客地址: [https://herman7z.site](https://herman7z.site)
+### 个人微信: silently9527
+### 知识星球: [Herman's Notes](https://t.zsxq.com/h2EIR)
+![](https://raw.githubusercontent.com/silently9527/images/main/202408151725390.png)
 
 ## 捐赠研发
 如果您认为此项目帮到了您的开发工作，使您赚到钱了,您可以捐赠我一杯可乐(相信这比打赏主播更有意义)。
