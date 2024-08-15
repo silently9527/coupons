@@ -10,12 +10,17 @@
 
 # coupons文档完善中...
 
+### 博客地址: [https://herman7z.site](https://herman7z.site)
+### 个人微信: silently9527
+### 知识星球: [Herman's Notes](https://t.zsxq.com/h2EIR)
+![](https://raw.githubusercontent.com/silently9527/images/main/202408151725390.png)
+
+
 ## 项目介绍
 coupons是一个从前端到后端完全开源的淘宝客项目，目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点；理论上其他小程序支持，可能需要微调
 
 ### Github地址：
 - 项目地址：[https://github.com/silently9527/coupons](https://github.com/silently9527/coupons)
-
 ### Gitee地址：
 - 项目地址：[https://gitee.com/silently9527/coupons](https://gitee.com/silently9527/coupons)
 
@@ -130,10 +135,6 @@ coupons
 #### 期待你的加入，公众号：`贝塔学Java`，个人微信号：silently9527
 
 <img src="https://cdn.silently9527.cn/weixhao_gongzonghao_1629032267170.jpg?imageView2/1/w/600/h/350" alt="公众号">
-
-
-## 我的技术博客
-[https://silently9527.cn/](https://silently9527.cn/)
 
 ## 其他项目推荐
 * [Idea工具箱插件](https://github.com/silently9527/Toolkit)
