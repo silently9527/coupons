@@ -1,5 +1,6 @@
 
 <p align="center">
+    <a href="https://t.zsxq.com/h2EIR" target="_blank"><img alt="" src="https://img.shields.io/badge/知识星球-Herman's Notes-red&logoColor=FC5531" /></a>
   <a href="#微信公众号"><img src="https://img.shields.io/badge/公众号-贝塔学JAVA-blue.svg" alt="公众号"></a>
   <a href="https://juejin.cn/user/2779199782521693"><img src="https://img.shields.io/badge/juejin-掘金-yellow.svg" alt="掘金"></a>
   <a href="https://blog.csdn.net/asdewq380303318"><img src="https://img.shields.io/badge/csdn-CSDN-red.svg" alt="CSDN"></a>
