@@ -14,7 +14,7 @@
 ## 项目介绍
 coupons是一个从前端到后端完全开源的淘宝客项目，目前项目已经支持打包成App、微信小程序、QQ小程序、Web站点；理论上其他小程序支持，可能需要微调
 
-#### 欢迎加微信`silently9527`,免费加入知识星球,一起交流
+#### 欢迎加微信`silently9527`,加入技术交流群
 
 ### Github地址：
 - 项目地址：[https://github.com/silently9527/coupons](https://github.com/silently9527/coupons)
